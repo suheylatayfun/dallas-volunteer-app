@@ -1,0 +1,32 @@
+$width1:300px;
+$height1:350px;
+$height2:180px;
+
+.upcoming-events{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 30px;
+    box-sizing: border-box;
+}
+.event-container{
+    width:$width1;
+    height: $height1;
+    border: 1px solid rgb(224, 222, 222);
+    margin: 20px;
+};
+.event_title{
+    margin-top: 200px;
+
+}
+
+.event-image-container{
+    width: $width1;
+    height:$height2;
+    margin-top: -10px;
+}
+
+section{
+    display: flex;
+    justify-content: space-between;
+}

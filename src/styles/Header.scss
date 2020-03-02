@@ -1,0 +1,17 @@
+$padding: 20px;
+
+
+header{
+    display:flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100px;
+    padding: $padding;
+    box-sizing: border-box;
+}
+nav{
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

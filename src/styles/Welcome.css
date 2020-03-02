@@ -1,0 +1,45 @@
+.welcome {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+img {
+  width: 80%;
+  height: 300px;
+  margin-top: 30px;
+}
+
+#join-button {
+  width: 200px;
+  height: 50px;
+}
+
+#how {
+  color: #db5151;
+  font-size: 2rem;
+}
+
+section h1 {
+  color: #0d24ee;
+}
+
+section ol {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 50px;
+}
+
+section ol li {
+  margin-right: 40px;
+  font-size: 20px;
+}
+/*# sourceMappingURL=Welcome.css.map */

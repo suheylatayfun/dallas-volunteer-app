@@ -1,0 +1,40 @@
+$primary:rgb(219, 81, 81);
+$second:rgb(13, 36, 238);
+$size1:50px;
+$size2:20px;
+
+
+.welcome{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+img{
+    width: 80%;
+    height: 300px;
+    margin-top: 30px;
+}
+#join-button{
+    width: 200px;
+    height:50px;
+}
+
+#how{
+    color: $primary;
+    font-size: 2rem;
+}
+section{
+   
+    h1{
+        color: $second;
+    }
+    ol{
+        display: flex;
+        font-size: $size1;
+        li{
+            margin-right: 40px;
+            font-size: $size2;
+        }
+    }
+}
