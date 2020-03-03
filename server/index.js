@@ -86,9 +86,12 @@ app.post('/send-email',(req,res)=>{
         to: recipient, 
         from: sender,
         subject: topic,
-        text: text,
+        text:`Congratulations, you have been approved for event ${text}. Check your DallasVol app for detailed event information. See you there!`
     }
-    sgMail.send(msg).then(msg=>console.log(msg))
+    sgMail.send(msg).then(()=>res.send('Success')).catch(err=>{
+        console.log(err);
+        res.status(500).send('An error happened.')
+    })
 })
 
 app.listen(SERVER_PORT,()=>{console.log(`Server is on ${SERVER_PORT}`)})

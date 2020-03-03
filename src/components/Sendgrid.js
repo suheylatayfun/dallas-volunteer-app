@@ -13,11 +13,13 @@ export default class Sendgrid extends Component {
               }
         }
     }
+    
     sendEmail=()=>{
       const {email}= this.state;
-        axios.post(`/send-email?recipient=${email.recipient}&sender=${email.sender}&topic=${email.subject}&text=${email.text}`).then((response)=>console.log(response)).catch((err)=>{console.log(err)})
-        window.alert('We sent your request.')
+      axios.post(`/send-email?recipient=${email.recipient}&sender=${email.sender}&topic=${email.subject}&text=${email.text}`).then((response)=>console.log(response)).catch((err)=>{console.log(err)})
+        window.alert('We sent your approval to volunteer.')
     }
+
     render() {
         const {email}= this.state;
         return (

@@ -17,7 +17,9 @@ class EventVolunteerList extends React.Component {
     this.state = {
       // volunteerCount: this.props.location.state.volunteerCount,
       selectedVolunteerInfo: {},
-      showVolInfo: false
+      showVolInfo: false,
+      subject: 'Event Approval',
+
     };
   }
   componentDidMount() {
@@ -48,12 +50,20 @@ class EventVolunteerList extends React.Component {
         showVolInfo: !this.state.showVolInfo
       });
     });
- 
   }
+  sendApprovalEmail=(v_email,o_email,subject,text)=>{
+    axios.post(`/send-email?recipient=${v_email}&sender=${o_email}&topic=${subject}&text=${text}`)
+    .then((response)=>console.log(response))
+    .catch((err)=>{console.log(err)})
+    window.alert('We sent your approval to volunteer.')
+  }
+  
+  
   render() {
-    const { selectedVolunteerInfo,showVolInfo } = this.state;
-    console.log(selectedVolunteerInfo.v_name);
+    const {o_email}= this.props
+    const { selectedVolunteerInfo,showVolInfo,subject} = this.state;
     console.log(showVolInfo)
+    console.log(this.props.o_email)
     const mappedPendingVolunteers = this.props.pendingVolunteers.map(el => {
       const e_id = this.props.match.params.id;
       return (
@@ -64,6 +74,7 @@ class EventVolunteerList extends React.Component {
               this.props.acceptVolunteer(el.v_id, e_id);
               this.props.getPendingVolunteers(e_id);
               this.props.getEventVolunteers(e_id);
+              this.sendApprovalEmail(el.v_email,o_email,subject,el.e_title)
             }}
           >
             Accept
@@ -115,7 +126,8 @@ const mapStateToProps = reduxState => {
     // events: reduxState.events,
     // volunteer: reduxState.volunteer,
     pendingVolunteers: reduxState.events.pendingVolunteers,
-    eventVolunteers: reduxState.events.eventVolunteers
+    eventVolunteers: reduxState.events.eventVolunteers,
+    o_email : reduxState.organization.organization.o_email
   };
 };
 export default connect(mapStateToProps, {
