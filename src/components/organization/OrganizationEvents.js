@@ -6,12 +6,14 @@ import {
   getPastEvents
 } from "../../redux/reducers/organizationReducer";
 import { deleteEvent } from "./../../redux/reducers/eventReducer";
+import axios from "axios";
 
 class OrganizationEvents extends React.Component {
   constructor() {
     super();
     this.state = {
-      isPastEventVisible: false
+      isPastEventVisible: false,
+      topic:'Event cancellation'
     };
   }
   componentDidMount() {
@@ -20,22 +22,28 @@ class OrganizationEvents extends React.Component {
     this.props.getUpcomingEvents(o_id);
     this.props.getPastEvents(o_id);
   }
-
   switchToPastView = () => {
     this.setState({ isPastEventVisible: true });
   };
   switchToUpcomingView = () => {
     this.setState({ isPastEventVisible: false });
   };
+
+  sendEmailsToDeletedEventVolunteers = (id,o_email,topic,text)=>{
+    axios.post(`/send-cancellation/${id}?sender=${o_email}&topic=${topic}&text=${text}`)
+    .then((response)=>console.log(response))
+    .catch((err)=>{console.log(err)})
+    window.alert('We sent your event cancellation information to event volunteers.')
+  }
+    
   render() {
-    const { upcomingEvents, pastEvents } = this.props;
-    // console.log(upcomingEvents)
-    console.log(upcomingEvents.length);
+    const {topic}= this.state;
+    const o_email = this.props.organization.o_email
     const o_id = this.props.organization.o_id;
+    const { upcomingEvents, pastEvents } = this.props;
     const mappedUpcomingEvent = upcomingEvents.map(el => {
       return (
-        <table key={el.e_id}>
-          <tbody>
+          <tbody key={el.e_id}>
             <tr>
               <td>
                 <Link to={`/event/${el.e_id}`}>{el.e_title}</Link>
@@ -49,6 +57,8 @@ class OrganizationEvents extends React.Component {
               <td>
                 <button
                   onClick={() => {
+                    // this.getDeletedEventVolunteersEmails(el.e_id);
+                    this.sendEmailsToDeletedEventVolunteers(el.e_id,o_email,topic,el.e_title);
                     this.props.deleteEvent(el.e_id);
                     this.props.getUpcomingEvents(o_id);
                   }}
@@ -66,13 +76,11 @@ class OrganizationEvents extends React.Component {
               </td>
             </tr>
           </tbody>
-        </table>
       );
     });
     const mappedPastEvent = pastEvents.map(el => {
       return (
-        <table key={el.e_id}>
-          <tbody>
+          <tbody key={el.e_id}>
             <tr>
               <td>{el.e_title}</td>
               <td>{el.e_address}</td>
@@ -82,7 +90,6 @@ class OrganizationEvents extends React.Component {
               </td>
             </tr>
           </tbody>
-        </table>
       );
     });
 
@@ -94,12 +101,32 @@ class OrganizationEvents extends React.Component {
         {!this.state.isPastEventVisible ? (
           <div>
             <h3>Upcoming</h3>
-            {mappedUpcomingEvent}
+            <table>
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Where</th>
+                  <th>When</th>
+                  <th>What time</th>
+                </tr>
+              </thead>
+              {mappedUpcomingEvent}
+            </table>
           </div>
         ) : (
           <div>
             <h3>Past</h3>
-            {mappedPastEvent}
+            <table>
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Where</th>
+                  <th>When</th>
+                  <th>What time</th>
+                </tr>
+              </thead>
+              {mappedPastEvent}
+            </table>
           </div>
         )}
       </div>

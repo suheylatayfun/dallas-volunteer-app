@@ -1,15 +1,14 @@
 module.exports = {
   volunteerEvent: async (req, res) => {
     const db = req.app.get("db");
-    const { e_id, v_id } = req.body;
+    const {v_id,e_id } = req.body;
+    const existingVolunteer = await db.volunteer_approval.checkVolunteerForEvent(v_id,e_id);
+    if(existingVolunteer[0]){
+      res.status(302).json('Volunteer already applied for this event.')
+    }else{
+      await db.volunteer_approval.addIntoEventApproval(v_id, e_id);
+    }
     // const v_id = req.session.volunteer.v_id;
-    await db.volunteer_approval.addIntoEventApproval(v_id, e_id);
-    // .then(response=>res.status(200).json(response))
-    // req.session.pendingVolunteerForEvent = {
-    //     approved:pendingEvent[0].approved,
-    // }
-    // console.log(req.session.pendingVolunteerForEvent)
-    // res.status(200).json(req.session.pendingVolunteerForEvent)
   },
   getPendingEvents: async (req, res) => {
     const db = req.app.get("db");

@@ -92,6 +92,41 @@ app.post('/send-email',(req,res)=>{
         console.log(err);
         res.status(500).send('An error happened.')
     })
+});
+app.post('/send-emails',(req,res)=>{
+    const { recipient, sender, topic, text } = req.query; 
+    const msg = {
+        to: recipient, 
+        from: sender,
+        subject: topic,
+        text:`I am so sorry to tell this. ${text} has been cancelled.`
+    }
+    console.log(msg)
+    sgMail.send(msg).then(()=>res.send('Success')).catch(err=>{
+        console.log(err);
+        res.status(500).send('An error happened.')
+    })
+
+});
+
+app.post("/send-cancellation/:id",async (req, res) => {
+    const {sender, topic, text} = req.query;
+    const db = req.app.get('db');
+
+    const id = +req.params.id;
+    console.log(req.query, req.params);
+    let volunteerEmailList = await db.volunteer.getVolunteerEmailForDeletedEvent(id);
+    const msg = {
+        to: volunteerEmailList.map(v => v.v_email), 
+        from: sender,
+        subject: topic,
+        text:`I am so sorry to tell this. ${text} has been cancelled.`
+    }
+    console.log(msg)
+    sgMail.send(msg).then(()=>res.send('Success')).catch(err=>{
+        console.log(err, err.response.body.errors);
+        res.status(500).send('An error happened.')
+    })
 })
 
 app.listen(SERVER_PORT,()=>{console.log(`Server is on ${SERVER_PORT}`)})

@@ -20,7 +20,7 @@ class AddEvent extends React.Component{
         this.setState({shouldRedirect:true})
     }
     render(){
-        console.log(this.props.events)
+        // console.log(this.props.events)
         if(this.state.shouldRedirect){
             return <Redirect to="/home"/>
           }

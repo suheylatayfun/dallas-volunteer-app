@@ -13,7 +13,7 @@ class DetailedEvent extends React.Component {
   volunteerEvent=()=>{
     const e_id = this.props.match.params.id;
     const {v_id} = this.props.volunteer;
-    this.props.volunteerEvent(v_id,e_id);
+    this.props.volunteerEvent(v_id,e_id).then().catch(()=>window.alert("You have already volunteered for this event."))
   }
   render() {
     const mappedEvent = this.props.event.map((el, i) => {
