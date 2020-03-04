@@ -5,6 +5,7 @@ import {
 } from "../../redux/reducers/volunteerReducer";
 import { connect } from "react-redux";
 import {Redirect} from 'react-router-dom';
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
 class EditVolunteer extends React.Component {
   constructor() {
@@ -87,12 +88,18 @@ class EditVolunteer extends React.Component {
           <input name="v_name" onChange={this.handleChange} value={v_name} />
           <h4>Profile image</h4>
           <input name="v_image" onChange={this.handleChange} value={v_image} />
-          <h4>Location</h4>
-          <input
-            name="v_location"
-            onChange={this.handleChange}
-            value={v_location}
-          />
+          <h4>Which city do you live in?</h4>
+          <GooglePlacesAutocomplete 
+                name="v_location"
+                placeholder= "city name"
+                initialValue={v_location}
+                onSelect={(selectedResult) => this.setState({v_location: selectedResult.description })}
+                autocompletionRequest={{
+                    componentRestrictions: {
+                      country: ['us'],
+                    }
+                  }}
+                />
           <h4>HAVE YOU EVER BEEN VOLUNTEERING ACTIVITIES?</h4>
           <select
             name="v_been_a_volunteer_before"

@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import {updateState,registerVolunteer,loginVolunteer} from "../../redux/reducers/volunteerReducer";
 import "../../styles/VolunteerRegister.scss";
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
 class VolunteerRegister extends React.Component {
   constructor() {
@@ -59,18 +60,24 @@ class VolunteerRegister extends React.Component {
           <input name="v_name" onChange={this.handleChange} />
           <h4>Profile image</h4>
           <input name="v_image" onChange={this.handleChange} />
-          <h4>Location</h4>
-          <input name="v_location" onChange={this.handleChange} />
+          <h4>Which city do you live in?</h4>
+          <GooglePlacesAutocomplete 
+                name="v_location"
+                placeholder= "city name"
+                onSelect={(selectedResult) => this.props.updateState({v_location: selectedResult.description })}
+                autocompletionRequest={{
+                    componentRestrictions: {
+                      country: ['us'],
+                    }
+                  }}
+                />
+          {/* <input name="v_location" onChange={this.handleChange} /> */}
           <h4>HAVE YOU EVER BEEN VOLUNTEERING ACTIVITIES?</h4>
           <select name="v_been_a_volunteer_before" onChange={this.handleChange}>
             <option>---</option>
             <option> YES</option>
             <option> NO</option>
           </select>
-          {/* <input
-            name="v_been_a_volunteer_before"
-            onChange={this.handleChange}
-          ></input> */}
           <h4>WHY ARE YOU INTERESTED IN VOLUNTEERING?</h4>
           <textarea
             name="v_why_interested_in_volunteering"

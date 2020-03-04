@@ -15,9 +15,12 @@ import OrganizationEdit from './components/organization/OrganizationEdit';
 import AddEvent from './components/event/AddEvent';
 import DetailedEvent from './components/event/DetailedEvent';
 import Home from './components/Home';
-
 import Welcome from './components/Welcome';
+
 import Sendgrid from './components/Sendgrid';
+
+import Address from './components/Address'
+
 
 export default(
     <Switch>
@@ -35,5 +38,6 @@ export default(
         <Route path="/organization/login" component={OrganizationLogin}/>
         <Route path="/event/:id" component={DetailedEvent}/>
         <Route path="/add" component={AddEvent}/>
+        <Route path="/address" component={Address}/>
     </Switch>
 )

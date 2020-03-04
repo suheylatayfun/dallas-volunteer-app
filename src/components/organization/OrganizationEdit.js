@@ -2,6 +2,7 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getOrganizationSession,editOrganizationInfo} from '../../redux/reducers/organizationReducer';
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
 class EditOrganization extends React.Component{
   constructor(){
@@ -50,7 +51,18 @@ class EditOrganization extends React.Component{
             <h4>Organization Name</h4>
             <input name="o_name" onChange={this.handleChange} value={o_name} />
             <h4>Location</h4>
-            <input name="o_location" onChange={this.handleChange} value={o_location} />
+                <GooglePlacesAutocomplete 
+                name="o_location"
+                initialValue={o_location}
+                placeholder= "city-name"
+                onSelect={(selectedResult) => this.setState({o_location: selectedResult.description })}
+                autocompletionRequest={{
+                    componentRestrictions: {
+                      country: ['us'],
+                    }
+                  }}
+                />
+            {/* <input name="o_location" onChange={this.handleChange} value={o_location} /> */}
             <h4>Contact Person</h4>
             <input name="organizer_name"onChange={this.handleChange} value={organizer_name}/>
             <h4>Email</h4>

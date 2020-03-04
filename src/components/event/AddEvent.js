@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {updateState,addEvent,getEvents} from '../../redux/reducers/eventReducer';
 import {Redirect,Link} from 'react-router-dom';
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
 class AddEvent extends React.Component{
     constructor(){
@@ -19,6 +20,7 @@ class AddEvent extends React.Component{
         this.props.getEvents();
         this.setState({shouldRedirect:true})
     }
+   
     render(){
         // console.log(this.props.events)
         if(this.state.shouldRedirect){
@@ -31,7 +33,17 @@ class AddEvent extends React.Component{
                 <h3 >Event Name</h3>
                 <input name="e_title" onChange={this.handleChange}/>
                 <h3>Address</h3>
-                <input name="e_address" onChange={this.handleChange}/>
+                <GooglePlacesAutocomplete 
+                name="e_address"
+                placeholder="event address"
+                onSelect={(selectedResult) => this.props.updateState({e_address: selectedResult.description })}
+                autocompletionRequest={{
+                    componentRestrictions: {
+                      country: ['us'],
+                    }
+                  }}
+                />
+                {/* <input name="e_address" onChange={this.handleChange}/> */}
                 <h3>Event Date</h3>
                 <input type="date" name="e_date" onChange={this.handleChange}/>
                 <h3>Event Start Time and End Time</h3>
