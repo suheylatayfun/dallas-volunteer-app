@@ -2,6 +2,9 @@ module.exports = {
   getOrganizationUpcomingEvents: async (req, res) => {
     const db = req.app.get("db");
     const upcomingEvents = await db.organization.getOrganizationUpcomingEvents( req.session.organization.o_id);
+    console.log(req.session.organization.o_id);
+    // console.log(req.body);
+    // console.log(req.params)
     if (!upcomingEvents) {
       res.status(400).json("You don't have any upcoming events.");
     } else {

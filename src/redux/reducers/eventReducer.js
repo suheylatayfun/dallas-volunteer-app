@@ -30,8 +30,18 @@ const ADD_EVENT = 'ADD_EVENT';
 const GET_PENDING_VOLUNTEERS = 'GET_PENDING_VOLUNTEERS';
 const GET_EVENT_VOLUNTEERS = 'GET_EVENT_VOLUNTEERS';
 const DELETE_EVENT = 'DELETE_EVENT';
+const EDIT_EVENT = 'EDIT_EVENT';
 
 //ACTION CREATOR
+export function editEvent(e_title,e_address,e_date,e_start_time,e_end_time,e_image,e_details,e_volunteer_count,e_id){
+  console.log('Hit',e_id)
+  return{
+    type:EDIT_EVENT,
+    payload: axios.put(`/api/event/${e_id}`,{
+      e_title,e_address,e_date,e_start_time,e_end_time,e_image,e_details,e_volunteer_count,e_id
+    })
+}
+}
 export function deleteEvent(e_id){
   return{
     type: DELETE_EVENT,
@@ -88,6 +98,13 @@ export function addEvent(e_title,e_address,e_date,e_start_time,e_end_time,e_imag
 export default function eventReducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
+    case `${EDIT_EVENT}_FULFILLED`:
+      return{
+        ...state,
+        loading:false,
+        event: payload.data
+      }
+
     case `${DELETE_EVENT}_FULFILLED`:
       return{
         ...state,

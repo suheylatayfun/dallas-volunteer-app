@@ -15,7 +15,7 @@ module.exports = {
     const pendingEvents = await db.volunteer_approval.getVolunteerPendingEvents(
       req.session.volunteer.v_id
     );
-    // console.log(pendingEvents)
+    console.log(req.session.volunteer.v_id)
     if (!pendingEvents) {
       res.status(400).json("You don't have any pending events.");
     } else {

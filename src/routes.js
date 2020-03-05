@@ -13,6 +13,7 @@ import OrganizationProfile from './components/organization/OrganizationProfile';
 import OrganizationEdit from './components/organization/OrganizationEdit';
 
 import AddEvent from './components/event/AddEvent';
+import EditEvent from './components/event/EditEvent';
 import DetailedEvent from './components/event/DetailedEvent';
 import Home from './components/Home';
 import Welcome from './components/Welcome';
@@ -36,6 +37,7 @@ export default(
         <Route path="/organization/profile"  component={OrganizationProfile}/>
         <Route path="/organization/edit"  component={OrganizationEdit}/>
         <Route path="/organization/login" component={OrganizationLogin}/>
+        <Route path='/event/edit/:id' component={EditEvent}/>
         <Route path="/event/:id" component={DetailedEvent}/>
         <Route path="/add" component={AddEvent}/>
         <Route path="/address" component={Address}/>

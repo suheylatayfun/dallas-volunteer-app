@@ -12,7 +12,7 @@ const {registerVolunteer,registerOrganization,loginVolunteer,loginOrganization,l
 // const {usersOnly} = require('./middleware/authMiddleware');
 
 //event controller
-const{getEvents,getDetailedEvent,addEvent,getPendingVolunteers,getEventVolunteers,deleteEvent,getDeletedEventVolunteerEmail}= require('./controllers/eventController');
+const{getEvents,getDetailedEvent,addEvent,getPendingVolunteers,getEventVolunteers,deleteEvent,getDeletedEventVolunteerEmail,editEventInfo}= require('./controllers/eventController');
 
 //volunteer controller
 const {volunteerEvent,getPendingEvents,getApprovedEvents,getPastEvents} = require('./controllers/volunteerController');
@@ -51,6 +51,7 @@ app.get('/api/event/:id/delete/volunteer',getDeletedEventVolunteerEmail);
 app.get('/api/event/:id/pending',getPendingVolunteers);
 app.get('/api/event/:id/volunteer',getEventVolunteers);
 app.delete('/api/event/:id',deleteEvent);
+app.put('/api/event/:id',editEventInfo);
 app.get('/api/event/:id',getDetailedEvent);
 app.post('/api/events',addEvent);
 app.get('/api/events',getEvents);

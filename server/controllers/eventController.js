@@ -59,5 +59,15 @@ module.exports = {
         const volunteerEmailList = await db.volunteer.getVolunteerEmailForDeletedEvent(id);
         res.status(200).json(volunteerEmailList.map(val => val.v_email));
         console.log(volunteerEmailList)
+    },
+    editEventInfo: async(req,res)=>{
+        const db = req.app.get('db');
+        const e_id = +req.params.id;
+        const {e_title,e_address,e_date,e_start_time,e_end_time,e_image,e_details,e_volunteer_count}= req.body;
+        console.log(req.params.id);
+        // console.log(req.body)
+        const editedEvent = await db.event.editEvent(e_title,e_address,e_date,e_start_time,e_end_time,e_image,e_details,e_volunteer_count,e_id);
+        res.status(200).json(editedEvent[0]);
+
     }
 }

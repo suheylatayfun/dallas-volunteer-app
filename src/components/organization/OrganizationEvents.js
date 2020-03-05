@@ -7,13 +7,16 @@ import {
 } from "../../redux/reducers/organizationReducer";
 import { deleteEvent } from "./../../redux/reducers/eventReducer";
 import axios from "axios";
+import EditEvent from './../event/EditEvent'
 
 class OrganizationEvents extends React.Component {
   constructor() {
     super();
     this.state = {
       isPastEventVisible: false,
-      topic:'Event cancellation'
+      topic:'Event cancellation',
+      event_id:0,
+      canEdit: false
     };
   }
   componentDidMount() {
@@ -35,14 +38,19 @@ class OrganizationEvents extends React.Component {
     .catch((err)=>{console.log(err)})
     window.alert('We sent your event cancellation information to event volunteers.')
   }
+  toggle=(id)=>{
+    this.setState({canEdit:!this.state.canEdit, event_id: id })
+  }
     
   render() {
+
     const {topic}= this.state;
     const o_email = this.props.organization.o_email
     const o_id = this.props.organization.o_id;
     const { upcomingEvents, pastEvents } = this.props;
     const mappedUpcomingEvent = upcomingEvents.map(el => {
       return (
+      
           <tbody key={el.e_id}>
             <tr>
               <td>
@@ -53,7 +61,9 @@ class OrganizationEvents extends React.Component {
               <td>
                 {el.e_start_time} -{el.e_end_time}
               </td>
-              {/* <td><button>Delete this event</button></td> */}
+              <td>
+              <button onClick={()=>{this.toggle(el.e_id)}}>Edit event info</button>
+                </td>
               <td>
                 <button
                   onClick={() => {
@@ -129,6 +139,11 @@ class OrganizationEvents extends React.Component {
             </table>
           </div>
         )}
+        {this.state.canEdit? <EditEvent
+        toggle= {this.toggle}
+        event_id={this.state.event_id}
+
+        />:null}
       </div>
     );
   }
