@@ -10,8 +10,8 @@ class ProfileNav extends React.Component {
   };
   render() {
     return (
-      <div className="nav-bar">
-        <h1>VOLUNTEER APP</h1>
+      <div className="header-container">
+       <Link to="/home"><h1 id="app-name">volevent</h1></Link>
         <div className="profile-bar">
           {/* <p>{this.props.organization.o_name || this.props.volunteer.v_name}</p> */}
         

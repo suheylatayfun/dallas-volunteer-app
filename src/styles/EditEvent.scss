@@ -5,16 +5,21 @@ $percentage: 100%;
     height:$percentage;
     background-color: rgba(255, 98, 125, 0.274);
     position:fixed;
-    top:0
+    top:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .edit-form{
-    width: 40%;
-    height:750px;
+    width: 30%;
+    height:650px;
     border:1px solid black;
-    margin: auto;
+    line-height: 18px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: cadetblue;
 }
+
+

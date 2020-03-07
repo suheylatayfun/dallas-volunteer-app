@@ -1,16 +1,24 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import {updateState,registerVolunteer,loginVolunteer} from "../../redux/reducers/volunteerReducer";
 import "../../styles/VolunteerRegister.scss";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+require('dotenv').config();
+const {REACT_APP_cloudName,REACT_APP_uploadPreset} = process.env;
 
 class VolunteerRegister extends React.Component {
   constructor() {
     super();
     this.state = {
-      shouldRedirect: false
+      shouldRedirect:false,
+      v_image:''
     };
+  }
+  componentDidMount(){
+    this.setState({
+      v_image: this.props.v_image,
+    })
   }
   handleChange = e => {
     this.props.updateState({ [e.target.name]: e.target.value });
@@ -22,7 +30,6 @@ class VolunteerRegister extends React.Component {
       v_password,
       v_name,
       v_location,
-      v_image,
       v_why_interested_in_volunteering,
       v_been_a_volunteer_before,
       v_interests,
@@ -35,7 +42,7 @@ class VolunteerRegister extends React.Component {
         v_password,
         v_name,
         v_location,
-        v_image,
+        this.state.v_image,
         v_why_interested_in_volunteering,
         v_been_a_volunteer_before,
         v_interests,
@@ -43,48 +50,71 @@ class VolunteerRegister extends React.Component {
         v_id
       )
       .then(() => {
+        // e.preventDefault()
         this.setState({ shouldRedirect: true });
         // this.props.loginVolunteer(v_email, v_password);
       })
       .catch(err => console.log(err));
   };
+  checkUploadResult = (error,event)=>{
+    // console.log(props.e_image)
+    if(event.event === 'success'){
+        this.setState({v_image:event.info.url}) 
+    }
+}
+
   render() {
     if (this.state.shouldRedirect) {
-      return <Redirect to="/home" />;
+      return <Redirect to="/home" />
+    }
+    let widget;
+    if( window.cloudinary ) {
+        widget = window.cloudinary.createUploadWidget(
+            {
+                cloudName: `${REACT_APP_cloudName}`,
+                uploadPreset: `${REACT_APP_uploadPreset}`,
+                sources: ['local', 'url', 'camera', 'instagram'],
+                default: false
+            },
+            ( error, result ) => {
+                this.checkUploadResult(error, result);
+            }
+        );
     }
     return (
-      <div className="volunteer-register">
-        <h1>VolunteerRegister</h1>
-        <form>
+      <div className="register-parent">
+        <form className="register-form" onChange={(e)=>{e.preventDefault()}}>
+        <button onClick={this.props.toggleVol}>X</button>
+        <h3>VolunteerRegister</h3>
           <h4>Full Name</h4>
           <input name="v_name" onChange={this.handleChange} />
-          <h4>Profile image</h4>
-          <input name="v_image" onChange={this.handleChange} />
           <h4>Which city do you live in?</h4>
           <GooglePlacesAutocomplete 
                 name="v_location"
                 placeholder= "city name"
                 onSelect={(selectedResult) => this.props.updateState({v_location: selectedResult.description })}
                 autocompletionRequest={{
-                    componentRestrictions: {
-                      country: ['us'],
-                    }
-                  }}
+                  componentRestrictions: {
+                    country: ['us'],
+                  }
+                }}
                 />
           {/* <input name="v_location" onChange={this.handleChange} /> */}
-          <h4>HAVE YOU EVER BEEN VOLUNTEERING ACTIVITIES?</h4>
+          <h4>Have you ever been volunteering activities before?</h4>
           <select name="v_been_a_volunteer_before" onChange={this.handleChange}>
             <option>---</option>
             <option> YES</option>
             <option> NO</option>
           </select>
-          <h4>WHY ARE YOU INTERESTED IN VOLUNTEERING?</h4>
+          <h4>Why are you interested in volunteering?</h4>
           <textarea
             name="v_why_interested_in_volunteering"
             onChange={this.handleChange}
           ></textarea>
           <h4>Your interests</h4>
           <input name="v_interests" onChange={this.handleChange} />
+                <button onClick={()=>widget.open()}>Add your profile image!</button>
+                <input name="v_image" value={this.state.v_image}/>
           <h4>Email</h4>
           <input name="v_email" onChange={this.handleChange} />
           <h4>Password</h4>

@@ -61,9 +61,9 @@ class EventVolunteerList extends React.Component {
   
   render() {
     const {o_email}= this.props
-    const { selectedVolunteerInfo,showVolInfo,topic} = this.state;
-    console.log(showVolInfo)
-    console.log(this.props.o_email)
+    const { selectedVolunteerInfo,topic} = this.state;
+    // console.log(showVolInfo)
+    // console.log(this.props.o_email)
     const mappedPendingVolunteers = this.props.pendingVolunteers.map(el => {
       const e_id = this.props.match.params.id;
       return (

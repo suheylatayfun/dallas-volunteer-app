@@ -3,12 +3,18 @@ import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
 import { getDetailedEvent } from "../../redux/reducers/eventReducer";
 import {volunteerEvent} from '../../redux/reducers/volunteerReducer';
-import Nav from './../Nav';
+import '../../styles/DetailedEvent.scss'
+import {TiDelete} from "react-icons/ti";
+import {MdEmail,MdLocationOn,MdInfo} from "react-icons/md";
+import {IoIosContact,IoIosPeople,IoIosTime} from "react-icons/io";
+import {FaCalendarAlt,FaHandsHelping} from "react-icons/fa";
+// import Nav from './../Nav';
+
 
 
 class DetailedEvent extends React.Component {
   componentDidMount() {
-      this.props.getDetailedEvent(this.props.match.params.id);
+      this.props.getDetailedEvent(this.props.e_id);
   }
   volunteerEvent=()=>{
     const e_id = this.props.match.params.id;
@@ -16,33 +22,39 @@ class DetailedEvent extends React.Component {
     this.props.volunteerEvent(v_id,e_id).then().catch(()=>window.alert("You have already volunteered for this event."))
   }
   render() {
-    const mappedEvent = this.props.event.map((el, i) => {
+    // console.log(this.props)
+    // console.log(this.props.event)
+    const mappedEvent = this.props.event.length > 0 ? this.props.event.map((el, i) => {
       return (
-        <div key={el.e_id}>
+        <div key={el.e_id} className="detailed-event">
+            <TiDelete  onClick={this.props.toggleEvent} id="delete" size={30}/>
           <h2>{el.e_title}</h2>
-          <img src={el.e_image} alt="event" />
+          <img src={el.e_image} alt="event" id="detailed-ev-image"/>
 
           {this.props.role === 'organization'? null : (
           <Link to="/volunteer/profile"><button onClick={this.volunteerEvent}>VOLUNTEER</button></Link> 
           )  } 
-
-          <h4>Address:{el.e_address}</h4>
-          <h4>Date: {el.e_date}</h4>
-          <h4>Time: {el.e_start_time}-{el.e_end_time}</h4>
-          <h4>Details: {el.e_details}</h4>
-          <h4>{el.e_volunteer_count} volunteer/s needed.</h4>
-
-          <hr/>
-          <h4>Organization: {el.o_name}</h4>
+          <div className="detailed-ev-info">
+          <p><MdLocationOn size={20}/>  {el.e_address}</p>
+          <p><FaCalendarAlt size={18}/>  {el.e_date}</p>
+          <p><IoIosTime size={20}/>  {el.e_start_time} - {el.e_end_time}</p>
+          <p><MdInfo size={20}/>  {el.e_details}</p>
+          <p> <FaHandsHelping size={20}/>  {el.e_volunteer_count} volunteer/s needed.</p>
+          {/* <hr/> */}
+          <h4>Sponsored by:</h4>
+          <p><IoIosPeople size={22}/>  {el.o_name}</p>
+          <p><IoIosContact size={20}/>  {el.organizer_name}</p>
+          <p><MdEmail size={20}/>  {el.o_email}</p>
+          </div>
+          {/* <h4>Organization: {el.o_name}</h4>
           <h4>Organizer Name: {el.organizer_name}</h4> 
-          <h4>Email: {el.o_email}</h4>
-           
+          <h4>Email: {el.o_email}</h4> */}
         </div>
       );
-    });
+    }) : null;
     return (
-      <div>
-        <Nav/>
+      <div className="detailed-event-container">
+        {/* <Nav/> */}
         {mappedEvent}
       </div>
     );

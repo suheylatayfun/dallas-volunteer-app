@@ -12,6 +12,13 @@ module.exports = {
             res.status(200).json(response);
         })
     },
+    getDetailedEventForEdit:(req,res)=>{
+        const db= req.app.get('db');
+        const id = +req.params.id
+        db.event.getDetailedEventForEdit(id).then(response=>{
+            res.status(200).json(response);
+        })
+    },
     addEvent:(req,res)=>{
         const db = req.app.get('db');
         const{e_title,e_address,e_date,e_start_time,e_end_time,e_image,e_details,e_volunteer_count}= req.body;
@@ -19,8 +26,7 @@ module.exports = {
         db.event.addEvent(e_title,e_address,e_date,e_start_time,e_end_time,e_image,e_details,e_volunteer_count,o_id)
         .then(response=>{
             // console.log(response)
-            res.status(200).json(response)
-            
+            res.status(200).json(response) 
         })
         .catch(err=>{
             res.status(500).json('can not add an event')
@@ -52,22 +58,32 @@ module.exports = {
         const db = req.app.get('db');
         const e_id = +req.params.id;
         await db.event.deleteEvent(e_id);
+        res.sendStatus(200);
     },
     getDeletedEventVolunteerEmail: async (req,res)=>{
         const db = req.app.get('db');
         const id = +req.params.id;
         const volunteerEmailList = await db.volunteer.getVolunteerEmailForDeletedEvent(id);
         res.status(200).json(volunteerEmailList.map(val => val.v_email));
-        console.log(volunteerEmailList)
+        // console.log(volunteerEmailList)
     },
     editEventInfo: async(req,res)=>{
         const db = req.app.get('db');
         const e_id = +req.params.id;
-        const {e_title,e_address,e_date,e_start_time,e_end_time,e_image,e_details,e_volunteer_count}= req.body;
-        console.log(req.params.id);
-        // console.log(req.body)
+        const {e_title,e_address,e_image,e_details,e_volunteer_count}= req.body;
+        let {e_date,e_start_time,e_end_time}= req.body;
+        // console.log(req.params.id);
+        console.log(e_id)
+        console.log(req.body)
+        // for (key in req.body) {
+        //     console.log(req.body[key], typeof req.body[key])
+        // }
+
+        // e_date = new Date(e_date)
+        // e_start_time = new Date(e_start_time)
+        // e_end_time = new Date(e_end_time)
+        
         const editedEvent = await db.event.editEvent(e_title,e_address,e_date,e_start_time,e_end_time,e_image,e_details,e_volunteer_count,e_id);
         res.status(200).json(editedEvent[0]);
-
     }
 }

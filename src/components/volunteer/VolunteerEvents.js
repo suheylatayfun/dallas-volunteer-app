@@ -20,13 +20,14 @@ class VolunteerEvents extends React.Component {
     this.props.getPastEvents(v_id);
   }
   render() {
+    const moment = require('moment');
     const { pendingEvents, approvedEvents, pastEvents} = this.props;
     const mappedPendingEvent = pendingEvents.map(el => {
       return (
         <tbody key={el.e_id}>
           <tr>
             <td>{el.e_title}</td>
-            <td>{el.e_date}</td>
+            <td>{moment(el.e_date).format('LL')}</td>
             <td>
               {el.e_start_time} - {el.e_end_time}
             </td>
@@ -41,7 +42,7 @@ class VolunteerEvents extends React.Component {
         <tbody key={el.e_id}>
           <tr key={el.e_id}>
             <td>{el.e_title}</td>
-            <td>{el.e_date}</td>
+            <td>{moment(el.e_date).format('LL')}</td>
             <td>
               {el.e_start_time} - {el.e_end_time}
             </td>
@@ -56,7 +57,7 @@ class VolunteerEvents extends React.Component {
         <tbody key={el.e_id}>
           <tr>
             <td>{el.e_title}</td>
-            <td>{el.e_date}</td>
+            <td>{moment(el.e_date).format('LL')}</td>
             <td>
               {el.e_start_time} - {el.e_end_time}
             </td>

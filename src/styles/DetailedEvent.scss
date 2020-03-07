@@ -1,0 +1,34 @@
+@import './EditEvent.scss';
+.detailed-event-container{
+    width:$percentage;
+    height:$percentage;
+    background-color: rgba(15, 13, 13, 0.479);
+    position:fixed;
+    top:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.detailed-event{
+    width: 600px;
+    padding:30px;
+    border:1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:rgb(212, 160, 169);
+    position: relative;
+
+}
+.detailed-ev-info{
+    margin-left: 10px;
+}
+#detailed-ev-image{
+    height: 250px;
+    margin: 20px 0;
+}
+#delete{
+    position: absolute;
+    right:5px;
+    bottom: 5px;
+}

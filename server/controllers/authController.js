@@ -29,7 +29,6 @@ module.exports = {
         v_been_a_volunteer_before,
         v_interests
       ]);
-   
       // console.log(newUser);
       req.session.volunteer = {
         v_email: newUser[0].v_email,
@@ -93,7 +92,6 @@ module.exports = {
       } = req.body;
 
       const hash = await bcrypt.hash(o_password, 12);
-
       const newOrganization = await db.auth.registerOrganization([
         o_name,
         o_email,
@@ -217,7 +215,7 @@ module.exports = {
     const v_id = +req.params.id;
     const volunteerInfo = await db.volunteer.getVolunteerInfo(v_id);
     res.status(200).json(volunteerInfo[0]);
-    console.log(volunteerInfo[0])
+    // console.log(volunteerInfo[0])
   }
 };
 

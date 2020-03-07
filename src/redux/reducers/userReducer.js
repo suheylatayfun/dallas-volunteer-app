@@ -39,7 +39,8 @@ export default function reducer(state = initialState, action) {
         role: payload.data.o_role || payload.data.v_role,
         id: payload.data.o_id || payload.data.v_id,
         approved: payload.data.approved,
-        name: payload.data.o_name || payload.data.v_name
+        name: payload.data.o_name || payload.data.v_name,
+        image: payload.data.o_image || payload.data.v_image,
       };
     case LOGOUT:
       return {

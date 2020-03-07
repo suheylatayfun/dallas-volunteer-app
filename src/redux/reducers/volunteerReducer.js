@@ -65,7 +65,7 @@ export function editVolunteerInfo(
   v_interests,
   v_id
 ) {
-  console.log('HIT',v_id)
+  // console.log('HIT',v_id)
   return {
     type: EDIT_VOLUNTEER_INFO,
     payload: axios.put("/api/volunteer/edit", {

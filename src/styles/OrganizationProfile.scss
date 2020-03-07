@@ -1,3 +1,61 @@
+@import './Welcome.scss';
+.parent-parent-container{
+    width: $width1;
+    
+}
+.organization-profile-container,.volunteer-profile-container{
+    margin: 0 $size3;
+    box-shadow: 0px 1px 1px 1px rgb(218, 218, 218);
+    border-radius: 5px;
+    // text-align: center;
+    // box-sizing: border-box;
+}
 .organization-profile-container{
     display: flex;
+    padding: 20px 0 0 0;
+
+}
+// .volunteer-profile-container{
+
+
+// }
+.organization-image-container{
+    width: 30%;
+}
+.volunteer-image-container{
+    width:$width1;
+    background-color: rgb(233, 197, 203);
+    text-align: center;
+    padding: 30px;
+    position: relative;
+}
+
+#vol-image{
+    width: 160px;
+    height: 160px;
+    border-radius: 80px;
+    // text-align: center;
+}
+#v_name{
+    position: absolute;
+    left: 10px;
+}
+.volunteer-info-container{
+    width:35%;
+    margin:5px auto;
+    padding: 10px 0 ;
+    // border:1px solid black;
+}
+#org-image{
+    width:$width1;
+    height: 200px;
+    border-radius: 5px;
+    margin-bottom: -4px;
+}
+.organization-info-container{
+    width: 70%;
+    // border:1px solid blue;
+    padding: 30px 80px;
+    line-height:2;
+
 }

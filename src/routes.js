@@ -20,7 +20,8 @@ import Welcome from './components/Welcome';
 
 import Sendgrid from './components/Sendgrid';
 
-import Address from './components/Address'
+import Address from './components/Address';
+import Cloudinary from './components/Cloudinary';
 
 
 export default(
@@ -41,5 +42,6 @@ export default(
         <Route path="/event/:id" component={DetailedEvent}/>
         <Route path="/add" component={AddEvent}/>
         <Route path="/address" component={Address}/>
+        <Route path="/cloudinary" component={Cloudinary}/>
     </Switch>
 )

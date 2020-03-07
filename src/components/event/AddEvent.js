@@ -3,22 +3,36 @@ import {connect} from 'react-redux';
 import {updateState,addEvent,getEvents} from '../../redux/reducers/eventReducer';
 import {Redirect,Link} from 'react-router-dom';
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+require('dotenv').config();
+const {REACT_APP_cloudName,REACT_APP_uploadPreset} = process.env;
 
 class AddEvent extends React.Component{
     constructor(){
         super();
         this.state={
-            shouldRedirect:false
+            shouldRedirect:false,
+            e_image:''
         }
     }
+    componentDidMount(){
+        this.setState({
+          e_image: this.props.events.e_image,
+        })
+      }
     handleChange = (e)=>{
         this.props.updateState({ [e.target.name]: e.target.value });
     }
     handleClick = ()=>{
-        const {e_title,e_address,e_date,e_start_time,e_end_time,e_image,e_details,e_volunteer_count} = this.props.events;
-        this.props.addEvent(e_title,e_address,e_date,e_start_time,e_end_time,e_image,e_details,e_volunteer_count,this.props.id)
+        const {e_title,e_address,e_date,e_start_time,e_end_time,e_details,e_volunteer_count} = this.props.events;
+        this.props.addEvent(e_title,e_address,e_date,e_start_time,e_end_time,this.state.e_image,e_details,e_volunteer_count,this.props.id)
         this.props.getEvents();
         this.setState({shouldRedirect:true})
+    }
+    checkUploadResult = (error,event)=>{
+        // console.log(props.e_image)
+        if(event.event === 'success'){
+            this.setState({e_image:event.info.url}) 
+        }
     }
    
     render(){
@@ -26,6 +40,20 @@ class AddEvent extends React.Component{
         if(this.state.shouldRedirect){
             return <Redirect to="/home"/>
           }
+          let widget;
+    if( window.cloudinary ) {
+        widget = window.cloudinary.createUploadWidget(
+            {
+                cloudName: `${REACT_APP_cloudName}`,
+                uploadPreset: `${REACT_APP_uploadPreset}`,
+                sources: ['local', 'url', 'camera', 'instagram'],
+                default: false
+            },
+            ( error, result ) => {
+                this.checkUploadResult(error, result);
+            }
+        );
+    }
         return(
             <div>
                 <h3>EVENT REGISTER</h3>
@@ -49,8 +77,8 @@ class AddEvent extends React.Component{
                 <h3>Event Start Time and End Time</h3>
                 <input type="time" name="e_start_time" onChange={this.handleChange}/>-- 
                 <input type="time" name="e_end_time" onChange={this.handleChange}/>
-                <h3>Event Image</h3>
-                <input name="e_image" onChange={this.handleChange}/>
+                <button onClick={()=>widget.open()}>Add your event image!</button>
+                <input name="e_image" value={this.state.e_image}/>
                 <h3>Event Details</h3>
                 <textarea name="e_details" onChange={this.handleChange}></textarea>
                 <h3>How many volunteers are needed?</h3>

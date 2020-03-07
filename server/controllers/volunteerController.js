@@ -7,6 +7,7 @@ module.exports = {
       res.status(302).json('Volunteer already applied for this event.')
     }else{
       await db.volunteer_approval.addIntoEventApproval(v_id, e_id);
+      res.sendStatus(200);
     }
     // const v_id = req.session.volunteer.v_id;
   },
