@@ -1,0 +1,1 @@
+select count(v_name) from volunteers;

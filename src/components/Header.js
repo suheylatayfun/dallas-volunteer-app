@@ -3,7 +3,7 @@ import "./../styles/Header.scss";
 // import { Link } from "react-router-dom";
 import OrganizationLogin from "../components/organization/OrganizationLogin";
 import VolunteerLogin from "../components/volunteer/VolunteerLogin";
-import { FaRegUser } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 
 class Header extends React.Component {
   constructor() {
@@ -26,10 +26,10 @@ class Header extends React.Component {
           <h1 id="app-name">volevent</h1>
 
           <div className="dropdown">
-            <FaRegUser size={30} className="dropbtn"/>
+            <FaUser size={25} className="dropbtn"/>
             <div className="dropdown-content">
-              <h1 onClick={this.toggleVol}>Volunteer</h1>
-              <h1 onClick={this.toggleOrg}>Organization</h1>
+              <p onClick={this.toggleVol}>Volunteer</p>
+              <p onClick={this.toggleOrg}>Organization</p>
             </div>
           </div>
 

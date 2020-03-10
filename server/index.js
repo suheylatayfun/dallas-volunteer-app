@@ -15,7 +15,7 @@ const {registerVolunteer,registerOrganization,loginVolunteer,loginOrganization,l
 const{getEvents,getDetailedEvent,getDetailedEventForEdit,addEvent,getPendingVolunteers,getEventVolunteers,deleteEvent,getDeletedEventVolunteerEmail,editEventInfo}= require('./controllers/eventController');
 
 //volunteer controller
-const {volunteerEvent,getPendingEvents,getApprovedEvents,getPastEvents} = require('./controllers/volunteerController');
+const {volunteerEvent,getPendingEvents,getApprovedEvents,getPastEvents,getVolunteerCount} = require('./controllers/volunteerController');
 
 //organization Controller
 const {getOrganizationUpcomingEvents,getOrganizationPastEvents,acceptVolunteer,declineVolunteer}= require('./controllers/organizationController');
@@ -63,6 +63,7 @@ app.post('/api/volunteer/event',volunteerEvent);
 app.get('/api/volunteer/pending',getPendingEvents);
 app.get('/api/volunteer/approved',getApprovedEvents);
 app.get('/api/volunteer/past',getPastEvents);
+app.get('/api/volunteer',getVolunteerCount);
 
 
 //volunteer endpoints

@@ -6,6 +6,9 @@ import {
 import { connect } from "react-redux";
 import {Redirect} from 'react-router-dom';
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import '../../styles/Edit.scss';
+require('dotenv').config();
+const {REACT_APP_cloudName,REACT_APP_uploadPreset} = process.env;
 
 class EditVolunteer extends React.Component {
   constructor() {
@@ -48,7 +51,7 @@ class EditVolunteer extends React.Component {
       v_why_interested_in_volunteering,
       v_interests
     } = this.state;
-    const { v_id } = this.props.volunteer;
+    const { v_id } = this.props.v_id;
     // console.log(v_id);
     this.props.editVolunteerInfo(
       v_email,
@@ -63,6 +66,11 @@ class EditVolunteer extends React.Component {
     // this.props.history.push('/volunteer/profile')
     this.setState({shouldRedirect:true})
   };
+  checkUploadResult = (error,event)=>{
+    if(event.event === 'success'){
+        this.setState({v_image:event.info.url}) 
+    }
+  }
   render() {
     const {
       v_email,
@@ -79,15 +87,29 @@ class EditVolunteer extends React.Component {
         <Redirect to="/volunteer/profile"/>
       )
     }
+    let widget;
+    if( window.cloudinary ) {
+        widget = window.cloudinary.createUploadWidget(
+            {
+                cloudName: `${REACT_APP_cloudName}`,
+                uploadPreset: `${REACT_APP_uploadPreset}`,
+                sources: ['local', 'url', 'camera', 'instagram'],
+                default: false
+            },
+            ( error, result ) => {
+                this.checkUploadResult(error, result);
+            }
+        );
+    } 
 
     return (
-      <div className="volunteer-register">
-        <h1>VolunteerRegister</h1>
-        <form>
+      <div className="vol-edit-parent">
+        <div className="vol-edit-form">
+        <h3>Volunteer Edit</h3>
           <h4>Full Name</h4>
           <input name="v_name" onChange={this.handleChange} value={v_name} />
-          <h4>Profile image</h4>
-          <input name="v_image" onChange={this.handleChange} value={v_image} />
+          <h4>Email</h4>
+          <input name="v_email" onChange={this.handleChange} value={v_email} />
           <h4>Which city do you live in?</h4>
           <GooglePlacesAutocomplete 
                 name="v_location"
@@ -100,7 +122,7 @@ class EditVolunteer extends React.Component {
                     }
                   }}
                 />
-          <h4>HAVE YOU EVER BEEN VOLUNTEERING ACTIVITIES?</h4>
+          <h4>Have you ever been volunteering activities before?</h4>
           <select
             name="v_been_a_volunteer_before"
             onChange={this.handleChange}
@@ -110,7 +132,7 @@ class EditVolunteer extends React.Component {
             <option> YES</option>
             <option> NO</option>
           </select>
-          <h4>WHY ARE YOU INTERESTED IN VOLUNTEERING?</h4>
+          <h4>Why are you interested in volunteering?</h4>
           <textarea
             name="v_why_interested_in_volunteering"
             onChange={this.handleChange}
@@ -122,10 +144,13 @@ class EditVolunteer extends React.Component {
             onChange={this.handleChange}
             value={v_interests}
           />
-          <h4>Email</h4>
-          <input name="v_email" onChange={this.handleChange} value={v_email} />
+            <button onClick={()=>widget.open()}>Change image</button>
+          <input name="v_image" onChange={this.handleChange} value={v_image} />          
+          <div className="button-group">
          <button onClick={this.handleClick}>Save Changes</button>
-        </form>
+         <button onClick={this.props.toggleVol}>Cancel</button>
+        </div>
+        </div>
       </div>
     );
   }

@@ -8,7 +8,7 @@ import {
 import VolunteerRegister from '../../components/volunteer/VolunteerRegister'
 
 import '../../styles/Login.scss';
-import {TiDelete} from "react-icons/ti";
+import {TiDeleteOutline} from "react-icons/ti";
 
 class VolunteerLogin extends React.Component {
   constructor() {
@@ -45,11 +45,11 @@ class VolunteerLogin extends React.Component {
         {/* {loading? <img src='https://resources.humandx.org/static/img/loading_spinner.gif' alt='Loading..' /> : null} */}
         <form className="login-form">
         {/* <button onClick={this.props.toggleVol}>✖</button> */}
-        <TiDelete  onClick={this.props.toggleVol} id="delete" size={30}/>
+        <TiDeleteOutline  onClick={this.props.toggleVol} id="delete" size={30}/>
         <h3>VOLUNTEER LOGIN</h3>
-        <h3>E-mail</h3>
+        <h4>E-mail</h4>
         <input name="v_email" onChange={this.handleChange}/>
-        <h3>Password</h3>
+        <h4>Password</h4>
         <input name="v_password" onChange={this.handleChange} />
         <button onClick={this.handleLogin}>Login</button>
         <p>

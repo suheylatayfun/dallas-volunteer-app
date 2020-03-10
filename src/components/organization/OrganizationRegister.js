@@ -7,6 +7,7 @@ import {
 } from "./../../redux/reducers/organizationReducer";
 import {Redirect} from 'react-router-dom';
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import "../../styles/Register.scss";
 require('dotenv').config();
 const {REACT_APP_cloudName,REACT_APP_uploadPreset} = process.env;
 
@@ -78,8 +79,7 @@ class OrganizationRegister extends React.Component {
     return (
       <div className="register-parent">
         <form className="register-form" onChange={(e)=>{e.preventDefault()}}>
-          <button onClick={this.props.toggleOrg}>X</button>
-          <h1>Organization Register</h1>
+          <h3>Organization Register</h3>
           <h4>Organization Name</h4>
           <input name="o_name" onChange={this.handleChange} />
           <h4>Location</h4>
@@ -96,7 +96,6 @@ class OrganizationRegister extends React.Component {
               }
             }}
           />
-          {/* <input name="o_location" onChange={this.handleChange} /> */}
           <button onClick={()=>widget.open()}>Add your profile image!</button>
           <input name="o_image" value={this.state.o_image}/>
     
@@ -106,7 +105,10 @@ class OrganizationRegister extends React.Component {
           <input name="o_email" onChange={this.handleChange} />
           <h4>Password</h4>
           <input name="o_password" onChange={this.handleChange} />
+          <div className="button-group">
           <button onClick={this.handleClick}>Save Changes</button>
+          <button onClick={this.props.toggleOrg}>Cancel</button>
+          </div>      
         </form>
       </div>
     );

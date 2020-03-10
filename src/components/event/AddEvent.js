@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {updateState,addEvent,getEvents} from '../../redux/reducers/eventReducer';
-import {Redirect,Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import '../../styles/Login.scss'
 require('dotenv').config();
 const {REACT_APP_cloudName,REACT_APP_uploadPreset} = process.env;
 
@@ -55,12 +56,12 @@ class AddEvent extends React.Component{
         );
     }
         return(
-            <div>
+            <div className="register-parent">
+            <div className="register-form">
                 <h3>EVENT REGISTER</h3>
-                <div>
-                <h3 >Event Name</h3>
+                <h4 >Event Name</h4>
                 <input name="e_title" onChange={this.handleChange}/>
-                <h3>Address</h3>
+                <h4>Address</h4>
                 <GooglePlacesAutocomplete 
                 name="e_address"
                 placeholder="event address"
@@ -72,22 +73,25 @@ class AddEvent extends React.Component{
                   }}
                 />
                 {/* <input name="e_address" onChange={this.handleChange}/> */}
-                <h3>Event Date</h3>
-                <input type="date" name="e_date" onChange={this.handleChange}/>
-                <h3>Event Start Time and End Time</h3>
-                <input type="time" name="e_start_time" onChange={this.handleChange}/>-- 
-                <input type="time" name="e_end_time" onChange={this.handleChange}/>
+                <h4>Event Date</h4>
+                <input id="date" type="date" name="e_date" onChange={this.handleChange}/>
+                <h4>Event Start Time and End Time</h4>
+                <div className="time-input">
+                <input id="time" type="time" name="e_start_time" onChange={this.handleChange}/>-- 
+                <input id="time" type="time" name="e_end_time" onChange={this.handleChange}/>
+                </div>
                 <button onClick={()=>widget.open()}>Add your event image!</button>
                 <input name="e_image" value={this.state.e_image}/>
-                <h3>Event Details</h3>
+                <h4>Event Details</h4>
                 <textarea name="e_details" onChange={this.handleChange}></textarea>
-                <h3>How many volunteers are needed?</h3>
+                <h4>How many volunteers are needed?</h4>
                 <input type="number" min={1} name="e_volunteer_count" onChange={this.handleChange}/>
-                <Link to="/home"><button>Cancel</button></Link>
+                <div className="button-group">
+                <button onClick={this.props.toggleAddEvent}>Cancel</button>
                 <button onClick={this.handleClick}>Save Changes</button>
                 </div>
+                </div>
             </div>
-            //ORGANIZATION ID
         )
     }
 }

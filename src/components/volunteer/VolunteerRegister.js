@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import {updateState,registerVolunteer,loginVolunteer} from "../../redux/reducers/volunteerReducer";
-import "../../styles/VolunteerRegister.scss";
+import "../../styles/Register.scss";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 require('dotenv').config();
 const {REACT_APP_cloudName,REACT_APP_uploadPreset} = process.env;
@@ -84,8 +84,7 @@ class VolunteerRegister extends React.Component {
     return (
       <div className="register-parent">
         <form className="register-form" onChange={(e)=>{e.preventDefault()}}>
-        <button onClick={this.props.toggleVol}>X</button>
-        <h3>VolunteerRegister</h3>
+        <h3>Volunteer Register</h3>
           <h4>Full Name</h4>
           <input name="v_name" onChange={this.handleChange} />
           <h4>Which city do you live in?</h4>
@@ -113,13 +112,16 @@ class VolunteerRegister extends React.Component {
           ></textarea>
           <h4>Your interests</h4>
           <input name="v_interests" onChange={this.handleChange} />
-                <button onClick={()=>widget.open()}>Add your profile image!</button>
-                <input name="v_image" value={this.state.v_image}/>
+          <button onClick={()=>widget.open()}>Add your profile image!</button>
+          <input name="v_image" value={this.state.v_image}/>
           <h4>Email</h4>
           <input name="v_email" onChange={this.handleChange} />
           <h4>Password</h4>
           <input name="v_password" onChange={this.handleChange} />
+          <div className="button-group">
           <button onClick={this.handleClick}>Save Changes</button>
+          <button onClick={this.props.toggleVol}>Cancel</button>
+          </div>
         </form>
       </div>
     );

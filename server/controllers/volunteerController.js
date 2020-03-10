@@ -1,4 +1,9 @@
 module.exports = {
+  getVolunteerCount: async(req,res)=>{
+    const db = req.app.get('db');
+    let count = await db.volunteer.getVolunteerCount();
+      res.status(200).json(count[0]);
+  },
   volunteerEvent: async (req, res) => {
     const db = req.app.get("db");
     const {v_id,e_id } = req.body;

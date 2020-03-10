@@ -80,9 +80,9 @@ class EditEvent extends React.Component{
         return(
             <div className="edit-parent">
                 <div className="edit-form">
-                <h3 >Event Name</h3>
+                <h4>Event Name</h4>
                 <input name="e_title" onChange={this.handleChange} value={e_title}/>
-                <h3>Address</h3>
+                <h4>Address</h4>
                 <GooglePlacesAutocomplete 
                 name="e_address"
                 initialValue={e_address}
@@ -94,20 +94,23 @@ class EditEvent extends React.Component{
                     }
                   }}
                 />
-                <h3>Event Date</h3>
-                <input type="date" name="e_date" onChange={this.handleChange} value={moment(e_date).format('YYYY-MM-DD')}/>
-                <h3>Event Start Time and End Time</h3>
-                <input type="time" name="e_start_time" onChange={this.handleChange} value={e_start_time}/>-- 
-                <input type="time" name="e_end_time" onChange={this.handleChange} value={e_end_time}/>
-
+                <h4>Event Date</h4>
+                <input  id="edit-date" type="date" name="e_date" onChange={this.handleChange} value={moment(e_date).format('YYYY-MM-DD')}/>
+                <h4>Event Start Time and End Time</h4>
+                <div className="time">
+                <input id="edit-time" type="time" name="e_start_time" onChange={this.handleChange} value={e_start_time}/>-- 
+                <input id="edit-time" type="time" name="e_end_time" onChange={this.handleChange} value={e_end_time}/>
+                </div>
                 <button onClick={()=>widget.open()}>Change your event image!</button>
                 <input name="e_image" onChange={this.handleChange} value={e_image}/>
-                <h3>Event Details</h3>
+                <h4>Event Details</h4>
                 <textarea name="e_details" onChange={this.handleChange} value={e_details}></textarea>
-                <h3>How many volunteers are needed?</h3>
+                <h4>How many volunteers are needed?</h4>
                 <input type="number" min={1} name="e_volunteer_count" onChange={this.handleChange} value={e_volunteer_count}/>
+                <div className="button-group">
                 <button onClick={()=>this.props.toggle()}>Cancel</button>
                 <button onClick={this.handleClick}>Save Changes</button>
+                </div>
                 </div>
             </div>
             //ORGANIZATION ID

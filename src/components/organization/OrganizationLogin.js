@@ -6,7 +6,7 @@ import {
   loginOrganization
 } from "../../redux/reducers/organizationReducer";
 import OrganizationRegister from "../organization/OrganizationRegister";
-import {TiDelete} from "react-icons/ti";
+import {TiDeleteOutline} from "react-icons/ti";
 
 class OrganizationLogin extends React.Component {
   constructor() {
@@ -45,11 +45,11 @@ class OrganizationLogin extends React.Component {
             {/* {loading? <img src='https://resources.humandx.org/static/img/loading_spinner.gif' alt='Loading..' /> : null} */}
             <form className="login-form">
               {/* <button onClick={this.props.toggleOrg}>✖</button> */}
-              <TiDelete  onClick={this.props.toggleOrg} id="delete" size={30}/>
+              <TiDeleteOutline  onClick={this.props.toggleOrg} id="delete" size={30}/>
               <h3>ORGANIZATION LOGIN</h3>
-              <h3>E-mail</h3>
+              <h4>E-mail</h4>
               <input name="o_email" onChange={this.handleChange} />
-              <h3>Password</h3>
+              <h4>Password</h4>
               <input name="o_password" onChange={this.handleChange} />
               <button onClick={this.handleLogin}>Login</button>
               <p>

@@ -10,6 +10,8 @@ import {
   declineVolunteer
 } from "../../redux/reducers/volunteerReducer";
 import axios from "axios";
+import '../../styles/EventVolunteerList.scss';
+import {TiDelete} from "react-icons/ti";
 
 class EventVolunteerList extends React.Component {
   constructor(props) {
@@ -25,7 +27,7 @@ class EventVolunteerList extends React.Component {
   componentDidMount() {
     // console.log(this.props)
     this.props.getOrganizationSession();
-    const e_id = this.props.match.params.id;
+    const e_id = this.props.event_id;
 
     this.props
       .getPendingVolunteers(e_id)
@@ -62,13 +64,11 @@ class EventVolunteerList extends React.Component {
   render() {
     const {o_email}= this.props
     const { selectedVolunteerInfo,topic} = this.state;
-    // console.log(showVolInfo)
-    // console.log(this.props.o_email)
     const mappedPendingVolunteers = this.props.pendingVolunteers.map(el => {
-      const e_id = this.props.match.params.id;
+      const e_id = this.props.event_id;
       return (
         <div key={el.v_id}>
-          <p onClick={() => this.getVolunteerInfo(el.v_id)}>{el.v_name}</p>
+          <p id="pending-vol-name" onClick={() => this.getVolunteerInfo(el.v_id)}>{el.v_name}</p>
           <button
             onClick={() => {
               this.props.acceptVolunteer(el.v_id, e_id);
@@ -95,28 +95,34 @@ class EventVolunteerList extends React.Component {
       return <li key={el.v_id}>{el.v_name}</li>;
     });
     return (
-      <div>
+      <div className="volunteer-list-container">
+      <div className="volunteer-list">
+        <div className="pending">
+      <TiDelete size={25} onClick={this.props.showVol} id="delete"/>
         <h3>Pending Volunteers</h3>
         {mappedPendingVolunteers}
 
         {this.state.showVolInfo ? (
-          <div key={selectedVolunteerInfo.v_id}>
-          <p>Name:{selectedVolunteerInfo.v_name}</p>
-          <p>Location: {selectedVolunteerInfo.v_location}</p>
-          <p>Email: {selectedVolunteerInfo.v_email}</p>
+          <div key={selectedVolunteerInfo.v_id} className="hidden-vol-info">
+          <p>Name:<span>{selectedVolunteerInfo.v_name}</span></p>
+          <p>Location:<span> {selectedVolunteerInfo.v_location}</span></p>
+          <p>Email:<span>{selectedVolunteerInfo.v_email}</span></p>
           <img src={selectedVolunteerInfo.v_image} alt={selectedVolunteerInfo.v_name}/>
           <p>Why are you interested in volunteering?</p>
-          <p>{selectedVolunteerInfo.v_why_interested_in_volunteering}</p>
+          <p><span>{selectedVolunteerInfo.v_why_interested_in_volunteering}</span> </p>
           <p>Have you been a volunteer before?{selectedVolunteerInfo.v_been_a_volunteer_before}</p>
           <p>Interests</p>
-          <p>{selectedVolunteerInfo.v_interests}</p>
+          <p><span>{selectedVolunteerInfo.v_interests}</span> </p>
           </div>
         ) : null}
-
-        {/* <h3>Event Volunteers // Volunteer Limit:{this.state.volunteerCount}</h3> */}
-        <h3>Event volunteers</h3>
+        <div className="ev-vol-info">
+        </div>
+      </div>
+        <div className="approved">
+        <h3>Event volunteers ({this.props.vol_count} needed)</h3>
         <ol>{mappedVolunteers}</ol>
-        {/* {mappedPendingVolunteerInfo} */}
+        </div>
+      </div>
       </div>
     );
   }

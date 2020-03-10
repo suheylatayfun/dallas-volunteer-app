@@ -1,55 +1,138 @@
-$percentage: 100%;
+@import "./Welcome.scss";
 
-.login-parent,.register-parent{
-    width:$percentage;
-    height:$percentage;
-    background-color: rgba(15, 13, 13, 0.479);
-    position:fixed;
-    top:0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.login-parent,
+.register-parent {
+  width: $width1;
+  height: $width1;
+  background-color: rgba(15, 13, 13, 0.479);
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
+  @include tablet() {
+    padding: 0;
+  }
 }
 
-.login-form,.register-form{
-    // height:650px;
-    padding: 10px 20px 20px 20px;
-    box-sizing: border-box;
-    border:1px solid black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgb(236, 172, 183);
-    position: relative;
-    // margin-top: 200px;
-    // margin-bottom: 400px;
+.login-form,
+.register-form {
+  padding: $size2;
+  box-sizing: border-box;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  position: relative;
+  @include tablet() {
+    padding: 0;
+  }
 }
-.login-form{
-    width: 20%;
-    line-height: 18px;
-    min-height: 300px;
-    input{
-        line-height: 25px;
-    }
-    h3,button{
-        font-weight: bold;
-        margin: 10px 0;
-    } 
-}
-.register-form{
+.login-form {
+  width: 20%;
+  line-height: $font-s3;
+  min-height: $size6;
+  padding-top: $size7;
+  text-align: center;
+  border: 1px solid rgb(167, 167, 167);
+  input {
+    line-height: 25px;
+  }
+  h4,
+  button {
+    font-weight: bold;
+    margin: $margin-2 0;
+  }
+  h3,
+  u {
+    color: #f55454;
+  }
+  u{
+    cursor: pointer;
+  }
+  button {
+    font-size: $font-s2;
+    border-radius: 3px;
+    padding: 4px;
+    cursor: pointer;
+    border: 1px solid rgb(167, 167, 167);
+  }
+  @include tablet() {
     width: 30%;
-    input{
-        line-height: 25px;
-        width:80%;
+    line-height: 15px;
+    input {
+      border: 1px solid rgb(65, 65, 65);
     }
-    
+  }
 }
-// .google-places-autocomplete__input{
-//         line-height: 25px;
+#delete {
+  position: absolute;
+  right: $margin-2;
+  color: rgb(82, 78, 78);
+  cursor: pointer;
+}
+#delete:hover {
+  color: #f55454;
+}
+.register-form {
+  width:$width2;
+  text-align: center;
+  input,
+  textarea {
+    line-height: 25px;
+    width: 400px;
+  }
+  h3,
+  h4 {
+    margin-bottom: 10px;
+    margin-top: $margin-2;
+  }
+  h3 {
+    color: #f55454;
+  }
+  .button-group {
+    width: $size6;
+    margin-top:$margin-1;
+    display: flex;
+    justify-content: space-evenly;
+    button {
+      font-size: $font-s4;
+      border-radius: 3px;
+      padding: 4px;
+      cursor: pointer;
+      border: 1px solid rgb(167, 167, 167);
+    }
+  }
+  button {
+    line-height: $font-s5;
+    margin: $margin-2;
+  }
+  @include tablet() {
+    width:$width2;
+    line-height: 13px;
+    input,
+    textarea {
+      width:$size6;
+      border: 1px solid rgb(65, 65, 65);
+    }
+  }
+}
+.google-places-autocomplete {
+  position: relative;
+}
 
-            
-// }
-#delete{
-    position: absolute;
-    right:10px;
+.google-places-autocomplete__suggestions-container {
+  position: absolute;
+  background-color: #ffb6b9;
+}
+.google-places-autocomplete__suggestion:hover {
+  background-color: #bbded6;
+}
+
+#time,#date{
+  width: 22%;
+  line-height: 18px;
+  margin-bottom: 5px;
 }

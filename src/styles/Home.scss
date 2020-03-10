@@ -1,7 +1,8 @@
 @import './Welcome.scss';
 $width1:270px;
 $height1:285px;
-$height2:160px;
+$height2:140px;
+
 
 .parent-event-container{
     // padding:0  $size3;
@@ -10,20 +11,32 @@ $height2:160px;
     // text-align: center;
     padding: 40px 0 0 0;
     box-sizing: border-box;
+    background-color: #bbded6;
+    text-align:left;
+    @include tablet() {
+        padding:$font-s5 0 0 0;
+        margin:auto;
+      }
 }
 
 #event-add-button{
     line-height: 30px;
-    background-color:rgb(218, 95, 95);
-    color: white;
     border-radius: 5px;
     border: transparent;
-    margin-bottom: 30px;
-    margin-left: 450px;
+    background-color: white;
+    color: black;
+    font-size: 18px;
 }
-.upcoming{
+#event-add-button:hover{
+    background-color:rgb(218, 95, 95);
+    color: white;
+
+
+}
+#upcoming{
     font-size: 25px;
-    // text-align: left;
+    color:rgb(61, 61, 61);
+    text-align:center;
 }
 .upcoming-events{
     display: flex;
@@ -32,21 +45,26 @@ $height2:160px;
     flex-wrap: wrap;
     padding: 30px;
     box-sizing: border-box;
-    // border: 1px solid blueviolet;
     margin-top: 20px;
 }
 .event-container{
     width:$width1;
     height: $height1;
-    border: 1px solid rgb(224, 222, 222);
+    // border: 1px solid rgb(100, 100, 100);
+    box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.36);
+    background-color: white;
+    color:rgb(61, 61, 61);
     margin-bottom: 30px;
+    padding: 5px;
 };
 
 #event-title{
     text-align: center;
+    // color: #f53a3a;
 }
 .event-image-container{
-    width:270px;
+    // width:270px;
+    width: 100%;
     height:$height2;
     margin:10px 0 5px 0;
 }

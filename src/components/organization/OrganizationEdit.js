@@ -3,6 +3,9 @@ import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getOrganizationSession,editOrganizationInfo} from '../../redux/reducers/organizationReducer';
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import '../../styles/Edit.scss';
+require('dotenv').config();
+const {REACT_APP_cloudName,REACT_APP_uploadPreset} = process.env;
 
 class EditOrganization extends React.Component{
   constructor(){
@@ -18,7 +21,7 @@ class EditOrganization extends React.Component{
   }
   componentDidMount(){
     this.props.getOrganizationSession();
-    const {o_name,o_location,o_email,o_image,organizer_name} = this.props.organization
+    const {o_name,o_location,o_email,organizer_name,o_image} = this.props.organization
     this.setState({
       o_name:o_name,
       o_email:o_email,
@@ -33,21 +36,39 @@ class EditOrganization extends React.Component{
   handleClick= e=>{
     e.preventDefault();
     const {o_name,o_location,o_email,o_image,organizer_name} = this.state;
-    const {o_id}= this.props.organization;
+    const {o_id}= this.props.o_id;
     this.props.editOrganizationInfo(o_name,o_email,o_location,organizer_name,o_image,o_id);
     this.setState({shouldRedirect:true})
   }
+  checkUploadResult = (error,event)=>{
+    if(event.event === 'success'){
+        this.setState({o_image:event.info.url}) 
+    }
+}
   render(){
     if(this.state.shouldRedirect === true){
       return(
         <Redirect to="/organization/profile"/>
       )
     }
-    const {o_name,o_location,o_email,o_image,organizer_name} = this.state;
+    let widget;
+    if( window.cloudinary ) {
+        widget = window.cloudinary.createUploadWidget(
+            {
+                cloudName: `${REACT_APP_cloudName}`,
+                uploadPreset: `${REACT_APP_uploadPreset}`,
+                sources: ['local', 'url', 'camera', 'instagram'],
+                default: false
+            },
+            ( error, result ) => {
+                this.checkUploadResult(error, result);
+            }
+        );
+    } 
+    const {o_name,o_location,o_email,organizer_name,o_image} = this.state;
       return (
-        <div>
-          <h1>Edit Organization Information</h1>
-          <form>
+        <div className="org-edit-parent">
+          <div className="org-edit-form">
             <h4>Organization Name</h4>
             <input name="o_name" onChange={this.handleChange} value={o_name} />
             <h4>Location</h4>
@@ -62,15 +83,17 @@ class EditOrganization extends React.Component{
                     }
                   }}
                 />
-            {/* <input name="o_location" onChange={this.handleChange} value={o_location} /> */}
             <h4>Contact Person</h4>
             <input name="organizer_name"onChange={this.handleChange} value={organizer_name}/>
             <h4>Email</h4>
             <input name="o_email" onChange={this.handleChange} value={o_email} />
-            <h4>image</h4>
+            <button onClick={()=>widget.open()}>Change image</button>
             <input name="o_image" onChange={this.handleChange} value={o_image} />
+            <div className="button-group">
             <button onClick={this.handleClick}>Save Changes</button>
-          </form>
+            <button onClick={this.props.toggleOrg}>Cancel</button>
+            </div>
+          </div>
         </div>
       );
 }

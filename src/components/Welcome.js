@@ -1,40 +1,106 @@
-import React, {Component} from 'react';
-import Header from './Header';
-import '../styles/Welcome.scss';
+import React, { Component } from "react";
+import Header from "./Header";
+import "../styles/Welcome.scss";
+import {connect} from 'react-redux'
+import {getEvents} from '../redux/reducers/eventReducer';
+import { IoIosPin } from "react-icons/io";
+import { MdDateRange } from "react-icons/md";
+import axios from 'axios';
+import Footer from '../components/Footer';
+
 
 class Welcome extends Component {
-  
+  constructor(){
+    super();
+    this.state={
+      count:0
+    }
+  }
+  componentDidMount(){
+    this.props.getEvents();
+    axios.get('/api/volunteer').then(response=>{
+      this.setState({count:response.data})
+    })
+  }
   render() {
+    // console.log(this.state.count)
+    // console.log(this.props.getEvents)
+    const moment = require("moment");
+    const mappedEvents = this.props.events.map((el, i) => {
+      return (
+        <div key={el.e_id} className="w-event-container">
+          <h4 id="w-event-title">{el.e_title}</h4>
+          <img
+            src={el.e_image}
+            alt="event"
+            className="w-event-image-container"
+          />
+          <div>
+            <p id="w-event-address">
+              <IoIosPin size={15} />
+              {el.e_address}
+            </p>
+            <p id="w-event-date">
+              <MdDateRange size={14} /> {moment(el.e_date).format("LL")}
+            </p>
+          </div>
+        </div>
+      );
+    })
     return (
-      <div className="parent-parent-container">
-        <Header/>
-      <div className="welcome">
-        <img src="https://images.unsplash.com/photo-1528459584353-5297db1a9c01?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1075&q=80" alt="plain"/>
-        {/* <button id="join-button">Join the Community</button> */}
-        <h1 id="how">HOW IT WORKS ?</h1>
-        <div>
-          <h1>For Organizations</h1>
-          <ol>
-          <li>Register your organization</li>
-            <li>Click Add Event button</li>
-            <li>Approve Pending Volunteers</li>
-            <li>You're done.</li>
-          </ol>
+      <div>
+        <Header />
+        <div className="welcome">
+          
+          <div className="about">
+            <div className="about-info">
+              <h2>About us</h2>
+              <p>
+                Volunteering is an activity where an individual of group
+                provides services for no financial or social gain to benefit
+                another person, group or organization. This website is for bringing volunteers and organizations together 
+                on volunteering events.
+              </p>
+            </div>
+          </div>
+          <h2 id="opportunities">Upcoming volunteer opportunities</h2>
+          <div className="w-event-parent">
+          {mappedEvents}
+          </div>
+          <div className="how-works">
+            <h2>How volevent works?</h2>
+            <div className="how">
+          <div id="org-how">
+              <h3>Organizations</h3>
+              <p>Register,</p>
+              <p>Add your event,</p>
+              <p>Approve  your pending Volunteers,</p>
+              <p>You're done.</p>
+          </div>
+    
+          <div id="vol-how">
+              <h3>Volunteers</h3>
+              <p>Register,</p>
+              <p>Look at upcoming events,</p>
+              <p>Volunteer an event,</p>
+              <p>Wait for being approved</p>
+          </div>
+          </div>
+          </div>
+          <div className="volunteer-count">
+              <h1>{this.state.count.count}</h1>
+            <h3>Volunteers so far.</h3>
+          </div>
         </div>
-        <div>
-          <h1>For Volunteers</h1>
-          <ol>
-            <li>Register</li>
-            <li>Look at upcoming events</li>
-            <li>Click Volunteer button</li>
-            <li>Wait for being approved by the organization</li>
-            
-          </ol>
-        </div>
-      </div>
+        <Footer/>
       </div>
     );
   }
 }
+const mapStateToProps = reduxState => {
+  return {
+    events: reduxState.events.events
+  };
+};
 
-export default Welcome;
+export default connect(mapStateToProps, { getEvents})(Welcome);

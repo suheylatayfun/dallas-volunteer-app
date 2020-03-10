@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import {
   getUpcomingEvents,
   getPastEvents
@@ -8,7 +7,9 @@ import {
 import { deleteEvent } from "./../../redux/reducers/eventReducer";
 import axios from "axios";
 import EditEvent from "./../event/EditEvent";
+import EventVolunteerList from '../event/EventVolunteerList';
 import "../../styles/Events.scss";
+import DetailedEvent from '../event/DetailedEvent';
 
 class OrganizationEvents extends React.Component {
   constructor() {
@@ -17,7 +18,10 @@ class OrganizationEvents extends React.Component {
       isPastEventVisible: false,
       topic: "Event cancellation",
       event_id: 0,
-      canEdit: false
+      canEdit: false,
+      showVol:false,
+      isEventInfoOpen: false,
+      vol_count: 0
     };
   }
   componentDidMount() {
@@ -32,7 +36,6 @@ class OrganizationEvents extends React.Component {
   switchToUpcomingView = () => {
     this.setState({ isPastEventVisible: false });
   };
-
   sendEmailsToDeletedEventVolunteers = (id, o_email, topic, text) => {
     axios
       .post(
@@ -49,6 +52,13 @@ class OrganizationEvents extends React.Component {
   toggle = id => {
     this.setState({ canEdit: !this.state.canEdit, event_id: id });
   };
+  showVol = (id,count)=>{
+    this.setState({ showVol: !this.state.showVol, event_id: id,vol_count:count });
+  }
+  openEventInfo = (id)=>{
+    this.setState({isEventInfoOpen:!this.state.isEventInfoOpen, event_id: id})
+  }
+
 
   render() {
     const moment = require("moment");
@@ -61,8 +71,9 @@ class OrganizationEvents extends React.Component {
       return (
         <tbody key={el.e_id}>
           <tr>
-            <td>
-              <Link to={`/event/${el.e_id}`}>{el.e_title}</Link>
+            <td onClick={()=>{this.openEventInfo(el.e_id)}}>
+              {/* <Link to={`/event/${el.e_id}`}>{el.e_title}</Link> */}
+             <u>{el.e_title}</u> 
             </td>
             <td>{el.e_address}</td>
             <td>{moment(el.e_date).format("LL")}</td>
@@ -74,14 +85,14 @@ class OrganizationEvents extends React.Component {
                 onClick={() => {
                   this.toggle(el.e_id);
                 }}
+                id="event-setting-button"
               >
-                Edit event info
+                Edit
               </button>
             </td>
             <td>
               <button
                 onClick={() => {
-                  // this.getDeletedEventVolunteersEmails(el.e_id);
                   if (
                     window.confirm(
                       "Are you sure you wish to delete this event?"
@@ -97,19 +108,14 @@ class OrganizationEvents extends React.Component {
                     this.props.getUpcomingEvents(o_id);
                   }
                 }}
+                id="event-setting-button"
               >
-                Delete this event
+                Delete
               </button>
             </td>
             <td>
-              <Link
-                to={{
-                  pathname: `/event/${el.e_id}/volunteers`,
-                  state: { volunteerCount: el.e_volunteer_count }
-                }}
-              >
-                <button>Show Volunteer List</button>
-              </Link>
+                <button id="event-setting-button" onClick={()=>{this.showVol(el.e_id,el.e_volunteer_count)}}>Volunteers</button>
+            
             </td>
           </tr>
         </tbody>
@@ -131,14 +137,13 @@ class OrganizationEvents extends React.Component {
     });
 
     return (
-      <div className="organization-volunteer-events-parent-container">
-      <div className="organization-volunteer-events-container">
-        <div className="buttons">
+      <div>
+        <div className="event-type-buttons">
         <button onClick={this.switchToUpcomingView}>UPCOMING EVENTS</button>
         <button onClick={this.switchToPastView}>PAST EVENTS</button>
         </div>
         {!this.state.isPastEventVisible ? (
-          <div className="upcoming-past-events-container">
+          <div className="event-table">
             {/* <h3>Upcoming</h3> */}
             <table>
               <thead>
@@ -153,7 +158,7 @@ class OrganizationEvents extends React.Component {
             </table>
           </div>
         ) : (
-          <div className="upcoming-past-events-container">
+          <div className="event-table">
             {/* <h3>Past</h3> */}
             <table>
               <thead>
@@ -171,7 +176,11 @@ class OrganizationEvents extends React.Component {
         {this.state.canEdit ? (
           <EditEvent toggle={this.toggle} event_id={this.state.event_id} />
         ) : null}
-      </div>
+        {this.state.showVol? (
+          <EventVolunteerList showVol={this.showVol} event_id={this.state.event_id} vol_count={this.state.vol_count}/>
+        ):null}
+        {this.state.isEventInfoOpen?<DetailedEvent openEventInfo={this.openEventInfo} e_id={this.state.event_id}/>:null
+        }
     </div>
     );
   }

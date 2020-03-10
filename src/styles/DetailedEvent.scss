@@ -1,34 +1,61 @@
-@import './EditEvent.scss';
+@import './Welcome.scss';
 .detailed-event-container{
-    width:$percentage;
-    height:$percentage;
+    width:$width1;
+    height:$width1;
     background-color: rgba(15, 13, 13, 0.479);
     position:fixed;
     top:0;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 .detailed-event{
     width: 600px;
-    padding:30px;
+    padding:20px;
     border:1px solid black;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color:rgb(212, 160, 169);
+    background-color:white;
     position: relative;
-
+    @include tablet() {
+        width: 50%;
+      }
+    
 }
 .detailed-ev-info{
-    margin-left: 10px;
+    width:450px;
+    line-height: 25px;
+    @include tablet() {
+        width: 95%;
+      }
 }
 #detailed-ev-image{
     height: 250px;
+    width: 100%;
     margin: 20px 0;
+    @include tablet() {
+        height:200px
+      }
 }
 #delete{
     position: absolute;
     right:5px;
     bottom: 5px;
+}
+#join-button{
+    line-height: 25px;
+    background-color:#bbded6;
+    font-size: 20px;
+    border:1px solid rgb(160, 160, 160);
+    border-radius: 5px;
+    @include tablet() {
+        width: 95%;
+        font-size:$font-s2;
+      }
+}
+#join-button:hover{
+    background-color: white;
+
 }
