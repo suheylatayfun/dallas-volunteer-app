@@ -48,12 +48,10 @@ class OrganizationRegister extends React.Component {
       )
       .then(() => {
         this.setState({ shouldRedirect: true });
-        // this.props.loginOrganization(o_email,o_password);
       })
       .catch(err => console.log(err));
   };
   checkUploadResult = (error,event)=>{
-    // console.log(props.e_image)
     if(event.event === 'success'){
         this.setState({o_image:event.info.url}) 
     }

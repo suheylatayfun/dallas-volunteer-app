@@ -1,75 +1,107 @@
 @import "./Welcome.scss";
 
+.event-table-parent {
+  width: $width1;
+}
+
 .event-type-buttons {
   text-align: center;
   font-size: 30px;
-  margin: -3px $size3 0 ;
-   background-color: #bbded6;
-   box-shadow: 0px 1px 2px 1px rgb(184, 183, 183);
-   @include tablet() {
-    padding:0;
-   margin: 0;
-} 
+  margin: -3px $size3 0;
+  background-color: #bbded6;
+  box-shadow: 0px 1px 2px 1px rgb(184, 183, 183);
+  @include tablet() {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    @include phone() {
+      font-size: 20px;
+      width: 100%;
+    }
+  }
 
   button {
     margin: 30px 5px 0 5px;
     font-weight: bold;
-    font-size:$font-s4;
+    font-size: $font-s4;
     background-color: transparent;
     border: none;
     outline: none;
     color: black;
+    @include tablet() {
+      font-size: 15px;
+    }
   }
   button:hover {
-    color:#f55454;;
+    color: #f55454;
   }
 }
 .event-table {
-  max-width:100%;
   box-shadow: 0px 1px 2px 1px rgb(184, 183, 183);
   background-color: #bbded6;
-  margin:0 $size3;
+  margin: 0 $size3;
   padding: 20px 35px 300px 35px;
-  button{
-      margin-top:10px;
-      font-size:$font-s2;
+  button {
+    margin-top: 10px;
+    font-size: $font-s2;
+  }
+  @include tablet() {
+    width: 100%;
+    margin: 0;
+    // padding: 30px;
+  }
+  @include phone() {
+    width: 100%;
+    padding: 20px;
   }
 
-  @include tablet() {
-    margin: 0;
-}
+  @include xphone() {
+    padding: 15px;
+  }
 }
 table {
-    border-collapse: collapse;
-    border-spacing: 5px;
+  border-collapse: collapse;
+  border-spacing: 5px;
 }
-th{
-    height: 30px;
-    width: 170px;
-    text-align: center;
-    border-top: 1px solid rgb(209, 206, 206);
-    border-bottom: 1px solid rgb(209, 206, 206);
-    background-color:white;
-    font-size:17px;
-}
-td{
-    height: 50px;
-    text-align: center;
-    background-color:white;
-    border-bottom: 1px solid rgb(209, 206, 206);
-    u:hover{
-      color:#f55454;
-    }
+th {
+  height: 30px;
+  text-align: center;
+  border-top: 1px solid rgb(209, 206, 206);
+  border-bottom: 1px solid rgb(209, 206, 206);
+  background-color: white;
+  font-size: 17px;
+  @include tablet() {
+    font-size: 17px;
   }
-  tr:hover {background-color: #13dbad;}
-
-
-#event-setting-button:hover{
-    background-color:#f55454;
-    color: white;
+  @include phone() {
+    font-size: 15px;
+  }
 }
-#event-setting-button{
-    border: none;
-    outline: none;
-    border-radius: 5px;
+td {
+  height: 50px;
+  text-align: center;
+  background-color: white;
+  border-bottom: 1px solid rgb(209, 206, 206);
+  u:hover {
+    color: #f55454;
+  }
+  @include tablet() {
+    font-size: 16px;
+  }
+  @include phone() {
+    font-size: 13px;
+  }
+}
+tr:hover {
+  background-color: #13dbad;
+}
+
+#event-setting-button:hover {
+  background-color: #f55454;
+  color: white;
+}
+#event-setting-button {
+  border: none;
+  outline: none;
+  border-radius: 5px;
 }

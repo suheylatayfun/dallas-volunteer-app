@@ -4,11 +4,11 @@ const initialState = {
   role: "",
   id: 0
 };
-//constants
+//CONSTANTS
 const GET_SESSION = "GET_SESSION";
 const LOGOUT = "LOGOUT";
 
-//action creator
+//ACTION CREATOR
 export function getSession() {
   return {
     type: GET_SESSION,
@@ -22,7 +22,7 @@ export function logout() {
   };
 }
 
-//reducer
+//REDUCER
 export default function reducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
@@ -32,7 +32,6 @@ export default function reducer(state = initialState, action) {
         loading:true 
       };
     case `${GET_SESSION}_FULFILLED`:
-      // console.log(payload.data)
       return {
         ...state,
         loading:false,

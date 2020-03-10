@@ -22,7 +22,7 @@ const initialState = {
   eventVolunteers:[],
   loading: false
 };
-//constants
+//CONSTANTS
 const GET_EVENTS = "GET_EVENTS";
 const UPDATE_STATE = 'UPDATE_STATE';
 const GET_DETAILED_EVENT = "GET_DETAILED_EVENT";
@@ -35,7 +35,6 @@ const EDIT_EVENT = 'EDIT_EVENT';
 
 //ACTION CREATOR
 export function editEvent(e_title,e_address,e_date,e_start_time,e_end_time,e_image,e_details,e_volunteer_count,e_id){
-  // console.log('Hit',e_id)
   return{
     type:EDIT_EVENT,
     payload: axios.put(`/api/event/${e_id}`,{
@@ -50,9 +49,7 @@ export function deleteEvent(e_id){
   }
 }
 export function getPendingVolunteers(e_id){
-  // console.log('hey',e_id)
   let data = axios.get(`/api/event/${e_id}/pending`);
-  // console.log(data)
   return{
     type: GET_PENDING_VOLUNTEERS,
     payload:data
@@ -68,7 +65,6 @@ export function getEventVolunteers(e_id){
 
 export function getEvents() {
   let data = axios.get("/api/events")
-  // console.log(data)
   return {
     type: GET_EVENTS,
     payload: data
@@ -125,7 +121,6 @@ export default function eventReducer(state = initialState, action) {
         loading:false
       }
     case `${GET_PENDING_VOLUNTEERS}_FULFILLED`:
-      // console.log(payload.data)
       return{
         ...state,
         pendingVolunteers:payload.data,
@@ -153,14 +148,12 @@ export default function eventReducer(state = initialState, action) {
         loading: true
       };
     case `${GET_DETAILED_EVENT}_FULFILLED`:
-      // console.log(payload.data);
       return {
         ...state,
         loading:false,
         event: payload.data
       };
     case `${GET_DETAILED_EVENT_FOR_EDIT}_FULFILLED`:
-      // console.log(payload.data);
       return {
         ...state,
         loading:false,

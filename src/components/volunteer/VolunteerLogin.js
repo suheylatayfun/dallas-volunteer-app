@@ -1,61 +1,69 @@
 import React from "react";
 import { connect } from "react-redux";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {
   updateState,
   loginVolunteer
 } from "./../../redux/reducers/volunteerReducer";
-import VolunteerRegister from '../../components/volunteer/VolunteerRegister'
+import VolunteerRegister from "../../components/volunteer/VolunteerRegister";
 
-import '../../styles/Login.scss';
-import {TiDeleteOutline} from "react-icons/ti";
+import "../../styles/Login.scss";
+import { TiDeleteOutline } from "react-icons/ti";
 
 class VolunteerLogin extends React.Component {
   constructor() {
     super();
     this.state = {
-    canRegister:false,
-    shouldRedirect:false
+      canRegister: false,
+      shouldRedirect: false
     };
   }
   handleChange = e => {
-      this.props.updateState({[e.target.name]: e.target.value });
-    };
+    this.props.updateState({ [e.target.name]: e.target.value });
+  };
 
-  handleLogin = (e) => {
+  handleLogin = e => {
     this.props
       .loginVolunteer(this.props.v_email, this.props.v_password)
-      .then(()=> this.setState({shouldRedirect:true}))
-      .catch(()=>window.alert('Wrong password'))
+      .then(() => this.setState({ shouldRedirect: true }))
+      .catch(() => window.alert("Wrong password"));
   };
-  toggleRegister=()=>{
-    this.setState({canRegister:!this.state.canRegister})
-  }
+  toggleRegister = () => {
+    this.setState({ canRegister: !this.state.canRegister });
+  };
   render() {
-    // const {loading}= this.props;
-    if(this.state.shouldRedirect){
-      return <Redirect to="/home"/>
+    if (this.state.shouldRedirect) {
+      return <Redirect to="/home" />;
     }
     return (
       <div>
-      {this.state.canRegister? <VolunteerRegister toggleVol={this.props.toggleVol}/>
-      :
-      <div className="login-parent">
-        {/* {loading? <img src='https://resources.humandx.org/static/img/loading_spinner.gif' alt='Loading..' /> : null} */}
-        <div className="login-form">
-        {/* <button onClick={this.props.toggleVol}>✖</button> */}
-        <TiDeleteOutline  onClick={this.props.toggleVol} id="delete" size={30}/>
-        <h3>VOLUNTEER LOGIN</h3>
-        <h4>E-mail</h4>
-        <input name="v_email" onChange={this.handleChange}/>
-        <h4>Password</h4>
-        <input type="password" name="v_password" onChange={this.handleChange} />
-        <button onClick={this.handleLogin}>Login</button>
-        <p>
-          Not have an account. Register, <u onClick={this.toggleRegister}>Here!</u></p>
-        </div>
-      </div>
-  }
+        {this.state.canRegister ? (
+          <VolunteerRegister toggleVol={this.props.toggleVol} />
+        ) : (
+          <div className="login-parent">
+            <div className="login-form">
+              <TiDeleteOutline
+                onClick={this.props.toggleVol}
+                id="delete"
+                size={30}
+              />
+              <h3>VOLUNTEER LOGIN</h3>
+              <h4>E-mail</h4>
+              <input name="v_email" onChange={this.handleChange} />
+              <h4>Password</h4>
+              <input
+                type="password"
+                name="v_password"
+                onChange={this.handleChange}
+              />
+              <button onClick={this.handleLogin}>Login</button>
+              <p>
+                Not have an account. Register,{" "}
+                <u onClick={this.toggleRegister}>Here!</u>
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     );
   }

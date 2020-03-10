@@ -32,11 +32,6 @@ class Header extends React.Component {
               <p onClick={this.toggleOrg}>Organization</p>
             </div>
           </div>
-
-          {/* <div className="sign-in">
-            <FaUser onClick={this.toggleVol} size={30} />
-            <FaRegUser onClick={this.toggleOrg} size={30} />
-          </div> */}
         </div>
         {this.state.isVolOpen ? (
           <VolunteerLogin toggleVol={this.toggleVol} />

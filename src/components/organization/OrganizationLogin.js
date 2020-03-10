@@ -1,27 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
-import {Redirect} from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 import {
   updateState,
   loginOrganization
 } from "../../redux/reducers/organizationReducer";
 import OrganizationRegister from "../organization/OrganizationRegister";
-import {TiDeleteOutline} from "react-icons/ti";
+import { TiDeleteOutline } from "react-icons/ti";
 
 class OrganizationLogin extends React.Component {
   constructor() {
     super();
     this.state = {
-      shouldRedirect:false,
-      canRegister: false,
+      shouldRedirect: false,
+      canRegister: false
     };
   }
-
   handleChange = e => {
     this.props.updateState({ [e.target.name]: e.target.value });
   };
-  handleLogin = (e) => {
-    // this.props.loginOrganization(this.props.o_email,this.props.o_password).then(()=>{console.log("You're logged in")}).catch(err=>{console.log(err)})
+  handleLogin = e => {
     this.props
       .loginOrganization(this.props.o_email, this.props.o_password)
       .then(() => this.setState({ shouldRedirect: true }))
@@ -31,25 +29,30 @@ class OrganizationLogin extends React.Component {
     this.setState({ canRegister: !this.state.canRegister });
   };
   render() {
-    // const {loading}= this.props;
-    if(this.state.shouldRedirect){
-      return <Redirect to="/home"/>
+    if (this.state.shouldRedirect) {
+      return <Redirect to="/home" />;
     }
     return (
       <div>
         {this.state.canRegister ? (
-          <OrganizationRegister toggleOrg={this.props.toggleOrg}/>
+          <OrganizationRegister toggleOrg={this.props.toggleOrg} />
         ) : (
           <div className="login-parent">
-            {/* {loading? <img src='https://resources.humandx.org/static/img/loading_spinner.gif' alt='Loading..' /> : null} */}
             <div className="login-form">
-              {/* <button onClick={this.props.toggleOrg}>✖</button> */}
-              <TiDeleteOutline  onClick={this.props.toggleOrg} id="delete" size={30}/>
+              <TiDeleteOutline
+                onClick={this.props.toggleOrg}
+                id="delete"
+                size={30}
+              />
               <h3>ORGANIZATION LOGIN</h3>
               <h4>E-mail</h4>
               <input name="o_email" onChange={this.handleChange} />
               <h4>Password</h4>
-              <input type="password" name="o_password" onChange={this.handleChange} />
+              <input
+                type="password"
+                name="o_password"
+                onChange={this.handleChange}
+              />
               <button onClick={this.handleLogin}>Login</button>
               <p>
                 Not have an account. Register,{" "}

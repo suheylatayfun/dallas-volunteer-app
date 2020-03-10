@@ -1,74 +1,71 @@
-@import './Welcome.scss';
+@import "./Welcome.scss";
 
-.volunteer-list-container{
-    width:$width1;
-    height:$width1;
-    background-color: rgba(15, 13, 13, 0.479);
-    position:fixed;
-    top:0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.volunteer-list-container {
+  width: $width1;
+  height: $width1;
+  background-color: rgba(15, 13, 13, 0.479);
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.volunteer-list{
-    width: 30%;
-    // height:650px;
-    border:1px solid black;
-    line-height: 18px;
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    text-align: center;
-    background-color:white;
-    padding: 30px 0 ;
-    position: relative;
-    button{
-        margin:10px 10px;
-    }
+.volunteer-list {
+  width: 30%;
+  border: 1px solid black;
+  line-height: 18px;
+  text-align: center;
+  background-color: white;
+  padding: 30px 0;
+  position: relative;
+  button {
+    margin: 10px 10px;
+  }
+  @include tablet() {
+    width: 60%;
+  }
+  @include phone() {
+    width: 80%;
+  }
 }
-.pending{
-    width: 90%;
-    margin-bottom: 20px;
+.pending {
+  width: 90%;
+  margin-bottom: 20px;
 }
-.approved{
-    width: 90%;
-    margin-top: 10px;
-    li{
-        list-style-position: inside;
-        margin: 10px;
-    }
-
+.approved {
+  width: 90%;
+  margin-top: 10px;
+  li {
+    list-style-position: inside;
+    margin: 10px;
+  }
 }
-.hidden-vol-info{
-    border: 1px solid black;
-    width: 100%;
-    text-align: center;
-    background-color:#ffb6b9;
-    margin:10px;
-    font-size: 16px;
-    img{
-        width: 200px;
-        height: 100px;
-    }
-    p{font-weight: bold}
-    span{
-        font-weight: normal;
-    }
-   
+.hidden-vol-info {
+  border: 1px solid black;
+  width: 100%;
+  text-align: center;
+  background-color: #ffb6b9;
+  margin: 10px;
+  font-size: 16px;
+  img {
+    width: 200px;
+    height: 100px;
+  }
+  p {
+    font-weight: bold;
+  }
+  span {
+    font-weight: normal;
+  }
 }
-#pending-vol-name{
-    margin-top: 10px;
+#pending-vol-name {
+  margin-top: 10px;
 }
-#pending-vol-name:hover{
-    color: red;
-
+#pending-vol-name:hover {
+  color: red;
 }
-#delete{
-    // position: absolute;
-    right: 10px;
+#delete {
+  // position: absolute;
+  right: 10px;
 }
-
-
-
-

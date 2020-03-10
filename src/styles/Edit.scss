@@ -1,31 +1,33 @@
 @import "./Welcome.scss";
 
-.vol-edit-parent, .org-edit-parent{
-    width: $width1;
-    height: $width1;
-    background-color: rgba(15, 13, 13, 0.479);
-    position:fixed;
-    top:0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 4;
-    @include tablet() {
-      padding: 0;
-    }
+.vol-edit-parent,
+.org-edit-parent {
+  width: $width1;
+  height: $width1;
+  background-color: rgba(15, 13, 13, 0.479);
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
+  @include tablet() {
+    padding: 0;
+  }
 }
 
-.vol-edit-form, .org-edit-form{
-    // width:$width2;
-    padding: $size2;
-    box-sizing: border-box;
-    border:1px solid black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color:white;
-    position: relative;
-    input,
+.vol-edit-form,
+.org-edit-form {
+  // width:$width2;
+  padding: $size2;
+  box-sizing: border-box;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  position: relative;
+  input,
   textarea {
     line-height: 25px;
     width: 400px;
@@ -39,29 +41,32 @@
     color: #f55454;
   }
   @include tablet() {
-    width:$width2;
+    width: $width2;
     line-height: 13px;
     input,
     textarea {
-      width:$size6;
+      width: $size6;
       border: 1px solid rgb(65, 65, 65);
     }
   }
-}
-  .button-group {
-    width: $size6;
-    margin-top:$margin-1;
-    display: flex;
-    justify-content: space-evenly;
-    button {
-      font-size: $font-s4;
-      border-radius: 3px;
-      padding: 4px;
-      cursor: pointer;
-      border: 1px solid rgb(167, 167, 167);
-    }
-}
- button {
-    line-height: $font-s5;
-    margin: $margin-2;
+  @include xphone() {
+    width: 90%;
   }
+}
+.button-group {
+  width: $size6;
+  margin-top: $margin-1;
+  display: flex;
+  justify-content: space-evenly;
+  button {
+    font-size: $font-s4;
+    border-radius: 3px;
+    padding: 4px;
+    cursor: pointer;
+    border: 1px solid rgb(167, 167, 167);
+  }
+}
+button {
+  line-height: $font-s5;
+  margin: $margin-2;
+}

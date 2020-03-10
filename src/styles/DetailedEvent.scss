@@ -1,61 +1,61 @@
-@import './Welcome.scss';
-.detailed-event-container{
-    width:$width1;
-    height:$width1;
-    background-color: rgba(15, 13, 13, 0.479);
-    position:fixed;
-    top:0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+@import "./Welcome.scss";
+.detailed-event-container {
+  width: $width1;
+  height: $width1;
+  background-color: rgba(15, 13, 13, 0.479);
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.detailed-event{
-    width: 600px;
-    padding:20px;
-    border:1px solid black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color:white;
-    position: relative;
-    @include tablet() {
-        width: 50%;
-      }
-    
+.detailed-event {
+  width: 600px;
+  padding: 20px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  position: relative;
+  @include tablet() {
+    width: 50%;
+  }
+  @include phone() {
+    width: 95%;
+  }
 }
-.detailed-ev-info{
-    width:450px;
-    line-height: 25px;
-    @include tablet() {
-        width: 95%;
-      }
+.detailed-ev-info {
+  width: 450px;
+  line-height: 25px;
+  @include tablet() {
+    width: 95%;
+  }
 }
-#detailed-ev-image{
-    height: 250px;
-    width: 100%;
-    margin: 20px 0;
-    @include tablet() {
-        height:200px
-      }
+#detailed-ev-image {
+  height: 250px;
+  width: 100%;
+  margin: 20px 0;
+  @include tablet() {
+    height: 200px;
+  }
 }
-#delete{
-    position: absolute;
-    right:5px;
-    bottom: 5px;
+#delete {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
 }
-#join-button{
-    line-height: 25px;
-    background-color:#bbded6;
-    font-size: 20px;
-    border:1px solid rgb(160, 160, 160);
-    border-radius: 5px;
-    @include tablet() {
-        width: 95%;
-        font-size:$font-s2;
-      }
+#join-button {
+  line-height: 25px;
+  background-color: #bbded6;
+  font-size: 20px;
+  border: 1px solid rgb(160, 160, 160);
+  border-radius: 5px;
+  @include tablet() {
+    width: 95%;
+    font-size: $font-s2;
+  }
 }
-#join-button:hover{
-    background-color: white;
-
+#join-button:hover {
+  background-color: white;
 }

@@ -13,7 +13,7 @@ const initialState = {
   upcomingEvents: [],
   pastEvents: []
 };
-//constants
+//CONSTANTS
 const UPDATE_STATE = "UPDATE_STATE";
 const REGISTER_ORGANIZATION = "REGISTER_ORGANIZATION";
 const RESET_INPUT = "RESET_INPUT";
@@ -23,10 +23,8 @@ const GET_UPCOMING_EVENTS = "GET_UPCOMING_EVENTS";
 const GET_PAST_EVENTS = "GET_PAST_EVENTS";
 const EDIT_ORGANIZATION_INFO = 'EDIT_ORGANIZATION_INFO';
 
-//action creator
-
+//ACTION CREATOR
 export function editOrganizationInfo(o_name,o_email,o_location,organizer_name,o_image,o_id){
-  // console.log('HIT',o_id)
   return{
     type:EDIT_ORGANIZATION_INFO,
     payload: axios.put("/api/organization/edit",{o_name,o_email,o_location,organizer_name,o_image,o_id
@@ -52,19 +50,11 @@ export function getOrganizationSession() {
   };
 }
 export function updateState(e) {
-  // console.log(e)
   return {
     type: UPDATE_STATE,
     payload: e
   };
 }
-//not using now
-export function resetInput() {
-  return {
-    type: RESET_INPUT
-  };
-}
-
 export const registerOrganization = (
   o_name,
   o_email,
@@ -95,7 +85,7 @@ export function loginOrganization(o_email, o_password) {
   };
 }
 
-//reducer
+//REDUCER
 export default function reducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
@@ -112,7 +102,6 @@ export default function reducer(state = initialState, action) {
         pastEvents: payload.data
       };
     case `${GET_UPCOMING_EVENTS}_FULFILLED`:
-      // console.log(payload.data);
       return {
         ...state,
         loading: false,

@@ -113,7 +113,7 @@ class EditVolunteer extends React.Component {
           <h4>Which city do you live in?</h4>
           <GooglePlacesAutocomplete 
                 name="v_location"
-                placeholder= "city name"
+                placeholder= ""
                 initialValue={v_location}
                 onSelect={(selectedResult) => this.setState({v_location: selectedResult.description })}
                 autocompletionRequest={{

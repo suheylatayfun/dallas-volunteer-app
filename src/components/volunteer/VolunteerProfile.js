@@ -23,12 +23,6 @@ class VolunteerProfile extends React.Component {
       <div className="parent-parent-container">
         <ProfileNav/>
         <div className="volunteer-profile-container">
-          {/* <h2>Volunteered Event Count: {pastEvents.length}</h2> */}
-          {/* <img
-            id="background-image"
-            src="https://images.unsplash.com/photo-1528459584353-5297db1a9c01?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1075&q=80"
-            alt="plain"
-          /> */}
           <figure className="volunteer-image-container">
           <img id="vol-image" src={v_image} alt="profile" />
           <h2 id="vol-name">{v_name}</h2>

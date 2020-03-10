@@ -7,7 +7,6 @@ import { getOrganizationSession } from "../../redux/reducers/organizationReducer
 import {MdEmail,MdLocationOn} from "react-icons/md";
 import {IoIosContact} from "react-icons/io";
 
-
 class OrganizationProfile extends React.Component {
   componentDidMount() {
     this.props.getOrganizationSession();

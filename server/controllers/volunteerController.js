@@ -14,7 +14,6 @@ module.exports = {
       await db.volunteer_approval.addIntoEventApproval(v_id, e_id);
       res.sendStatus(200);
     }
-    // const v_id = req.session.volunteer.v_id;
   },
   getPendingEvents: async (req, res) => {
     const db = req.app.get("db");
@@ -33,7 +32,6 @@ module.exports = {
     const approvedEvents = await db.volunteer_approval.getVolunteerApprovedEvents(
       req.session.volunteer.v_id
     );
-    // console.log(approvedEvents)
     if (!approvedEvents) {
       res.status(400).json("You don't have any approved events.");
     } else {
@@ -45,7 +43,6 @@ module.exports = {
     const pastEvents = await db.volunteer_approval.getVolunteerPastEvents(
       req.session.volunteer.v_id
     );
-    // console.log(pastEvents)
     if (!pastEvents) {
       res.status(400).json("You don't have any past events.");
     } else {

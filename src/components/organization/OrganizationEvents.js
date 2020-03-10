@@ -67,12 +67,10 @@ class OrganizationEvents extends React.Component {
     const o_id = this.props.organization.o_id;
     const { upcomingEvents, pastEvents } = this.props;
     const mappedUpcomingEvent = upcomingEvents.map(el => {
-      // console.log(el)
       return (
         <tbody key={el.e_id}>
           <tr>
             <td onClick={()=>{this.openEventInfo(el.e_id)}}>
-              {/* <Link to={`/event/${el.e_id}`}>{el.e_title}</Link> */}
              <u>{el.e_title}</u> 
             </td>
             <td>{el.e_address}</td>
@@ -89,8 +87,7 @@ class OrganizationEvents extends React.Component {
               >
                 Edit
               </button>
-            </td>
-            <td>
+            
               <button
                 onClick={() => {
                   if (
@@ -112,8 +109,6 @@ class OrganizationEvents extends React.Component {
               >
                 Delete
               </button>
-            </td>
-            <td>
                 <button id="event-setting-button" onClick={()=>{this.showVol(el.e_id,el.e_volunteer_count)}}>Volunteers</button>
             
             </td>
@@ -137,14 +132,14 @@ class OrganizationEvents extends React.Component {
     });
 
     return (
-      <div>
+      <div className="event-table-parent">
         <div className="event-type-buttons">
         <button onClick={this.switchToUpcomingView}>UPCOMING EVENTS</button>
         <button onClick={this.switchToPastView}>PAST EVENTS</button>
         </div>
         {!this.state.isPastEventVisible ? (
           <div className="event-table">
-            {/* <h3>Upcoming</h3> */}
+            {mappedUpcomingEvent.length !==0 ? (
             <table>
               <thead>
                 <tr>
@@ -152,14 +147,20 @@ class OrganizationEvents extends React.Component {
                   <th>Where</th>
                   <th>When</th>
                   <th>What time</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
                 </tr>
               </thead>
               {mappedUpcomingEvent}
             </table>
+            ):(
+            <h4>No pending event</h4>
+            )}
           </div>
         ) : (
           <div className="event-table">
-            {/* <h3>Past</h3> */}
+           {mappedPastEvent.length !== 0 ? (
             <table>
               <thead>
                 <tr>
@@ -171,6 +172,9 @@ class OrganizationEvents extends React.Component {
               </thead>
               {mappedPastEvent}
             </table>
+           ):(
+             <h4>No past event</h4>
+           )}
           </div>
         )}
         {this.state.canEdit ? (

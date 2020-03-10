@@ -18,12 +18,6 @@ import DetailedEvent from './components/event/DetailedEvent';
 import Home from './components/Home';
 import Welcome from './components/Welcome';
 
-
-// import Sendgrid from './components/Sendgrid';
-// import Address from './components/Address';
-// import Cloudinary from './components/Cloudinary';
-
-
 export default(
     <Switch>
         <Route exact path="/" component={Welcome}/>
@@ -40,9 +34,5 @@ export default(
         <Route path='/event/edit/:id' component={EditEvent}/>
         <Route path="/event/:id" component={DetailedEvent}/>
         <Route path="/add" component={AddEvent}/>
-
-        {/* <Route path="/address" component={Address}/>
-        <Route path="/email" component={Sendgrid}/>
-        <Route path="/cloudinary" component={Cloudinary}/> */}
     </Switch>
 )

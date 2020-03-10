@@ -1,79 +1,88 @@
 @import "./Welcome.scss";
 
-.edit-parent{
-    width: $width1;
-    height: $width1;
-    background-color: rgba(15, 13, 13, 0.479);
-    position:fixed;
-    top:0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    @include tablet() {
-        padding: 0;
-      }
+.edit-parent {
+  width: $width1;
+  height: $width1;
+  background-color: rgba(15, 13, 13, 0.479);
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include tablet() {
+    padding: 0;
+  }
 }
 
-.edit-form{
-    width: 30%;
-    border:1px solid black;
-    line-height: $font-s3;
-    text-align: center;
-    background-color:white;
-    padding: 30px;
-    z-index:-1;
-    input,textarea{
-        line-height: 25px;
-        margin: 10px;
-        width: 100%;
+.edit-form {
+  width: 30%;
+  border: 1px solid black;
+  line-height: $font-s3;
+  text-align: center;
+  background-color: white;
+  padding: 30px;
+  z-index: -1;
+  input,
+  textarea {
+    line-height: 25px;
+    margin: 10px;
+    width: 100%;
+  }
+  textarea {
+    height: 50px;
+  }
+  #edit-time,
+  #edit-date {
+    width: 33%;
+    line-height: 18px;
+    margin-bottom: 5px;
+    @include xphone() {
+      width: 40%;
     }
-    textarea{
-        height: 50px;
+  }
+  .time {
+    margin-left: 50px;
+  }
+  .button-group {
+    width: $width1;
+    button {
+      font-size: $font-s4;
+      border-radius: 3px;
+      padding: 4px;
+      cursor: pointer;
+      border: 1px solid rgb(167, 167, 167);
+      margin-left: 20px;
     }
-    #edit-time,#edit-date{
-        width: 33%;
-        line-height: 18px;
-        margin-bottom: 5px;
+  }
+
+  @include tablet() {
+    width: $width2;
+    line-height: 13px;
+    input,
+    textarea {
+      width: $size6;
+      border: 1px solid rgb(65, 65, 65);
     }
-    .time{
-        margin-left: 50px;
-    }
-    .button-group {
-        width:$width1;
-        button {
-          font-size: $font-s4;
-          border-radius: 3px;
-          padding: 4px;
-          cursor: pointer;
-          border: 1px solid rgb(167, 167, 167);
-          margin-left: 20px;
-        }
-      }
-  
-    @include tablet() {
-        width:$width2;
-        line-height: 13px;
-        input,
-        textarea {
-          width:$size6;
-          border: 1px solid rgb(65, 65, 65);
-        }
-      }
+  }
+  @include phone() {
+    width: 80%;
+  }
+  @include xphone() {
+    width: 90%;
+  }
 }
 .google-places-autocomplete {
-    position: relative;
-  }
-  
-  .google-places-autocomplete__suggestions-container {
-    position: absolute;
-    background-color: #ffb6b9;
-  }
-  .google-places-autocomplete__suggestion:hover {
-    background-color: #bbded6;
-  }
-.time, .edit-buttons{
-    display: flex;
+  position: relative;
 }
 
-
-
+.google-places-autocomplete__suggestions-container {
+  position: absolute;
+  background-color: #ffb6b9;
+}
+.google-places-autocomplete__suggestion:hover {
+  background-color: #bbded6;
+}
+.time,
+.edit-buttons {
+  display: flex;
+}

@@ -146,16 +146,9 @@ module.exports = {
     console.log("logged out");
   },
   getSession: (req, res) => {
-    // console.log("1")
     if (req.session.organization) {
-      // console.log("2")
-      // console.log(req.session.organization);
-      // console.log("hit Organization");
       res.status(200).json(req.session.organization);
     } else {
-      // console.log("3")
-      // console.log(req.session.volunteer);
-      // console.log("hit V");
       res.status(200).json(req.session.volunteer);
     }
   },
@@ -215,7 +208,6 @@ module.exports = {
     const v_id = +req.params.id;
     const volunteerInfo = await db.volunteer.getVolunteerInfo(v_id);
     res.status(200).json(volunteerInfo[0]);
-    // console.log(volunteerInfo[0])
   }
 };
 

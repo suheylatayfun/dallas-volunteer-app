@@ -17,7 +17,7 @@ const initialState = {
   approvedEvents: [],
   pastEvents: []
 };
-//constants
+//CONSTANTS
 const UPDATE_STATE = "UPDATE_STATE";
 const REGISTER_VOLUNTEER = "REGISTER_VOLUNTEER";
 const LOGIN_VOLUNTEER = "LOGIN_VOLUNTEER";
@@ -29,15 +29,8 @@ const GET_VOLUNTEER_SESSION = "GET_VOLUNTEER_SESSION";
 const EDIT_VOLUNTEER_INFO = "EDIT_VOLUNTEER_INFO";
 const ACCEPT_VOLUNTEER = 'ACCEPT_VOLUNTEER';
 const DECLINE_VOLUNTEER = 'DECLINE_VOLUNTEER';
-// const GET_VOLUNTEER_INFO = 'GET_VOLUNTEER_INFO';
 
-//action creator
-// export function getVolunteerInfo(id){
-//   return{
-//     type: GET_VOLUNTEER_INFO,
-//     payload: axios.get(`/api/volunteer/${id}`)
-//   }
-// }
+//ACTION CREATOR
 export function declineVolunteer(id){
   return{
     type: DECLINE_VOLUNTEER,
@@ -45,7 +38,6 @@ export function declineVolunteer(id){
   }
 }
 export function acceptVolunteer(v_id,e_id,approved){
-  // console.log('HIT',v_id)
   return{
     type: ACCEPT_VOLUNTEER,
     payload: axios.put(`/api/event/volunteer/accept`,{
@@ -65,7 +57,6 @@ export function editVolunteerInfo(
   v_interests,
   v_id
 ) {
-  // console.log('HIT',v_id)
   return {
     type: EDIT_VOLUNTEER_INFO,
     payload: axios.put("/api/volunteer/edit", {
@@ -115,13 +106,11 @@ export function volunteerEvent(v_id, e_id, approved) {
   };
 }
 export function updateState(e) {
-  // console.log(e)
   return {
     type: UPDATE_STATE,
     payload: e
   };
 }
-
 export function registerVolunteer(
   v_email,
   v_password,
@@ -157,16 +146,11 @@ export function loginVolunteer(v_email, v_password) {
   };
 }
 
-//reducer
+//REDUCER
 
 export default function reducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-    // case `${GET_VOLUNTEER_INFO}_FULFILLED`:
-    //   return{
-    //     ...state,
-    //     loading:false
-    //   }
     case `${DECLINE_VOLUNTEER}_FULFILLED`:
       return{
         ...state,
@@ -185,34 +169,24 @@ export default function reducer(state = initialState, action) {
         volunteer: payload.data
       };
     case `${GET_VOLUNTEER_SESSION}_FULFILLED`:
-      // console.log(payload.data);
       return {
         ...state,
         loading: false,
         volunteer: payload.data
-        // v_id:payload.data.v_id,
-        // v_email:payload.data.v_email,
-        // v_name:payload.data.v_name,
-        // v_why_interested_in_volunteering:payload.data.v_why_interested_in_volunteering,
-        // v_been_a_volunteer_before:payload.data.v_been_a_volunteer_before,
-        // v_interests:payload.data.v_interests,
       };
     case `${GET_PAST_EVENTS}_FULFILLED`:
-      // console.log(payload)
       return {
         ...state,
         loading: false,
         pastEvents: payload.data
       };
     case `${GET_APPROVED_EVENTS}_FULFILLED`:
-      // console.log(payload)
       return {
         ...state,
         loading: false,
         approvedEvents: payload.data
       };
     case `${GET_PENDING_EVENTS}_FULFILLED`:
-      // console.log(payload)
       return {
         ...state,
         loading: false,

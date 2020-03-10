@@ -62,7 +62,6 @@ const mapStateToProps = reduxState => {
   return {
     role: reduxState.userReducer.role,
     id: reduxState.userReducer.id
-    // name:reduxState.userReducer.name
   };
 };
 export default connect(mapStateToProps, { logout })(ProfileNav);

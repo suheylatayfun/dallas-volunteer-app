@@ -75,7 +75,7 @@ class EditOrganization extends React.Component{
                 <GooglePlacesAutocomplete 
                 name="o_location"
                 initialValue={o_location}
-                placeholder= "city-name"
+                placeholder= ""
                 onSelect={(selectedResult) => this.setState({o_location: selectedResult.description })}
                 autocompletionRequest={{
                     componentRestrictions: {

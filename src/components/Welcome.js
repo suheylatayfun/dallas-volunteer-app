@@ -8,7 +8,6 @@ import { MdDateRange } from "react-icons/md";
 import axios from 'axios';
 import Footer from '../components/Footer';
 
-
 class Welcome extends Component {
   constructor(){
     super();
@@ -23,8 +22,6 @@ class Welcome extends Component {
     })
   }
   render() {
-    // console.log(this.state.count)
-    // console.log(this.props.getEvents)
     const moment = require("moment");
     const mappedEvents = this.props.events.map((el, i) => {
       return (
@@ -54,7 +51,7 @@ class Welcome extends Component {
           
           <div className="about">
             <div className="about-info">
-              <h2>About us</h2>
+              <h2>About</h2>
               <p>
                 Volunteering is an activity where an individual or group
                 provides services for no financial or social gain "to benefit

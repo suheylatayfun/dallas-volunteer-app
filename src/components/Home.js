@@ -9,7 +9,6 @@ import { IoIosPin } from "react-icons/io";
 import { MdDateRange } from "react-icons/md";
 import AddEvent from '../components/event/AddEvent';
 
-
 class Home extends React.Component {
   constructor() {
     super();
@@ -51,7 +50,6 @@ class Home extends React.Component {
               <MdDateRange size={16} /> {moment(el.e_date).format("LL")}
             </p>
           </div>
-          {/* <h4>{el.e_volunteer_count} spots left</h4> */}
         </div>
       );
     });
@@ -59,7 +57,6 @@ class Home extends React.Component {
       <div className="parent-parent-event-container">
         <Nav />
         <div className="parent-event-container">
-          {/* {this.props.loading? <img src='https://resources.humandx.org/static/img/loading_spinner.gif' alt='Loading..' /> : null} */}
           {this.props.role !== "organization" ? null : (
               <button id="event-add-button" onClick={this.toggleAddEvent}>ADD YOUR EVENT</button>
           )}

@@ -3,8 +3,6 @@ module.exports = {
     const db = req.app.get("db");
     const upcomingEvents = await db.organization.getOrganizationUpcomingEvents( req.session.organization.o_id);
     console.log(req.session.organization.o_id);
-    // console.log(req.body);
-    // console.log(req.params)
     if (!upcomingEvents) {
       res.status(400).json("You don't have any upcoming events.");
     } else {
@@ -13,7 +11,6 @@ module.exports = {
   },
   getOrganizationPastEvents:async (req,res)=>{
     const db = req.app.get('db');
-    // const id = +req.params.id
     const pastEvents = await db.organization.getOrganizationPastEvents(req.session.organization.o_id);
     if(!pastEvents){
       res.status(400).json("You don't have any past events.")
@@ -23,19 +20,14 @@ module.exports = {
   },
   acceptVolunteer: async (req,res)=>{
     const db = req.app.get('db');
-    // const e_id = +req.params.id;
     const {v_id,e_id}= req.body
     const editedVolunteer = await db.event.acceptVolunteer(v_id,e_id);
     res.status(200).json(editedVolunteer);
-    // console.log(editedVolunteer)
   },
   declineVolunteer: async (req,res)=>{
     const db = req.app.get('db');
     const va_id = +req.params.id;
-    // const {v_id,e_id}= req.body;
-    // const deletedVolunteer = await db.event.declineVolunteer(v_id,e_id);
     const deletedVolunteer = await db.event.declineVolunteer(va_id);
     res.status(200).json(deletedVolunteer);
-    // console.log(deletedVolunteer)
   }
 };
