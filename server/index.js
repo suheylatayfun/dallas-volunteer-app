@@ -3,7 +3,9 @@ dotenv.config();
 const express = require('express');
 const session = require('express-session');
 const massive = require('massive');
+const app = express();
 const {SERVER_PORT,CONNECTION_STRING,SESSION_SECRET,SENDGRID_API_KEY} = process.env;
+
 
 //auth controller
 const {registerVolunteer,registerOrganization,loginVolunteer,loginOrganization,logout,getSession,editVolunteerInfo,editOrganizationInfo,getVolunteerInfo} = require('./controllers/authController');
@@ -26,8 +28,8 @@ massive(CONNECTION_STRING).then(db =>{
     app.set('db', db);
     console.log('DB connected')
 })
+app.use( express.static( `${__dirname}/../build`));
 
-const app = express();
 app.use(express.json());
 app.use(session({
     secret: SESSION_SECRET,
