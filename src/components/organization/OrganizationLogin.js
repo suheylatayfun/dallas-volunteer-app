@@ -21,7 +21,6 @@ class OrganizationLogin extends React.Component {
     this.props.updateState({ [e.target.name]: e.target.value });
   };
   handleLogin = (e) => {
-    e.preventDefault()
     // this.props.loginOrganization(this.props.o_email,this.props.o_password).then(()=>{console.log("You're logged in")}).catch(err=>{console.log(err)})
     this.props
       .loginOrganization(this.props.o_email, this.props.o_password)
@@ -43,20 +42,20 @@ class OrganizationLogin extends React.Component {
         ) : (
           <div className="login-parent">
             {/* {loading? <img src='https://resources.humandx.org/static/img/loading_spinner.gif' alt='Loading..' /> : null} */}
-            <form className="login-form">
+            <div className="login-form">
               {/* <button onClick={this.props.toggleOrg}>✖</button> */}
               <TiDeleteOutline  onClick={this.props.toggleOrg} id="delete" size={30}/>
               <h3>ORGANIZATION LOGIN</h3>
               <h4>E-mail</h4>
               <input name="o_email" onChange={this.handleChange} />
               <h4>Password</h4>
-              <input name="o_password" onChange={this.handleChange} />
+              <input type="password" name="o_password" onChange={this.handleChange} />
               <button onClick={this.handleLogin}>Login</button>
               <p>
                 Not have an account. Register,{" "}
                 <u onClick={this.toggleRegister}>Here!</u>
               </p>
-            </form>
+            </div>
           </div>
         )}
       </div>

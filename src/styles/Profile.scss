@@ -15,7 +15,7 @@
 }
 .organization-profile-container{
     display: flex;
-    padding: 20px 0 0 0;
+    padding: 20px;
     margin-bottom: 5px;
 
 }
@@ -37,9 +37,9 @@
 }
 
 #vol-image{
-    width: 140px;
-    height: 140px;
-    border-radius: 70px;
+    width: 160px;
+    height: 160px;
+    border-radius: 80px;
     top: 50px;
     @include tablet() {
         width: $size9;
@@ -48,19 +48,19 @@
   
 }
 #vol-name{
-    color:#f55454;
+    // color:#f55454;
     @include tablet() {
         font-size: 20px;
     }
 }
 #v_location{
-    color:#f55454;
+    // color:#f55454;
     position: absolute;
     right:10px;
     bottom: 5px;
 }
 #v_count{
-    color:#f55454;
+    // color:#f55454;
     position: absolute;
     left:10px;
     bottom: 5px;
@@ -68,12 +68,14 @@
 }
 .volunteer-info-container{
     width:70%;
-    margin:5px 0 5px 30px;
-    padding: 10px 10px ;
+    margin:10px 0 5px 35px;
+    padding: 25px 20px ;
+    line-height: 20px;
     // border:1px solid black;
     li{ 
         font-weight: bold;
         list-style-type: disc;
+        font-size: 17px;
     }
     
 }

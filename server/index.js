@@ -90,7 +90,7 @@ app.post('/send-email',(req,res)=>{
         to: recipient, 
         from: sender,
         subject: topic,
-        text:`Congratulations, you have been approved for event ${text}. Check your DallasVol app for detailed event information. See you there!`
+        text:`Congratulations, you have been approved for ${text} event. Check your volevent website for detailed event information. See you there!`
     }
     sgMail.send(msg).then(()=>res.send('Success')).catch(err=>{
         console.log(err);
@@ -103,7 +103,7 @@ app.post('/send-emails',(req,res)=>{
         to: recipient, 
         from: sender,
         subject: topic,
-        text:`I am so sorry to tell this. ${text} has been cancelled.`
+        text:`We are sorry to inform you that ${text} event has been cancelled.`
     }
     console.log(msg)
     sgMail.send(msg).then(()=>res.send('Success')).catch(err=>{

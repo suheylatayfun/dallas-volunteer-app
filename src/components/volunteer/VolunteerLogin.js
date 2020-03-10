@@ -23,7 +23,6 @@ class VolunteerLogin extends React.Component {
     };
 
   handleLogin = (e) => {
-    e.preventDefault();
     this.props
       .loginVolunteer(this.props.v_email, this.props.v_password)
       .then(()=> this.setState({shouldRedirect:true}))
@@ -43,18 +42,18 @@ class VolunteerLogin extends React.Component {
       :
       <div className="login-parent">
         {/* {loading? <img src='https://resources.humandx.org/static/img/loading_spinner.gif' alt='Loading..' /> : null} */}
-        <form className="login-form">
+        <div className="login-form">
         {/* <button onClick={this.props.toggleVol}>✖</button> */}
         <TiDeleteOutline  onClick={this.props.toggleVol} id="delete" size={30}/>
         <h3>VOLUNTEER LOGIN</h3>
         <h4>E-mail</h4>
         <input name="v_email" onChange={this.handleChange}/>
         <h4>Password</h4>
-        <input name="v_password" onChange={this.handleChange} />
+        <input type="password" name="v_password" onChange={this.handleChange} />
         <button onClick={this.handleLogin}>Login</button>
         <p>
           Not have an account. Register, <u onClick={this.toggleRegister}>Here!</u></p>
-        </form>
+        </div>
       </div>
   }
       </div>

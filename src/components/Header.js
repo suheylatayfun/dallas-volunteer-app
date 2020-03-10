@@ -26,7 +26,7 @@ class Header extends React.Component {
           <h1 id="app-name">volevent</h1>
 
           <div className="dropdown">
-            <FaUser size={25} className="dropbtn"/>
+            <FaUser size={35} className="dropbtn"/>
             <div className="dropdown-content">
               <p onClick={this.toggleVol}>Volunteer</p>
               <p onClick={this.toggleOrg}>Organization</p>

@@ -83,14 +83,14 @@ class VolunteerRegister extends React.Component {
     }
     return (
       <div className="register-parent">
-        <form className="register-form" onChange={(e)=>{e.preventDefault()}}>
+        <div className="register-form" onChange={(e)=>{e.preventDefault()}}>
         <h3>Volunteer Register</h3>
           <h4>Full Name</h4>
           <input name="v_name" onChange={this.handleChange} />
           <h4>Which city do you live in?</h4>
           <GooglePlacesAutocomplete 
                 name="v_location"
-                placeholder= "city name"
+                placeholder= ""
                 onSelect={(selectedResult) => this.props.updateState({v_location: selectedResult.description })}
                 autocompletionRequest={{
                   componentRestrictions: {
@@ -117,12 +117,12 @@ class VolunteerRegister extends React.Component {
           <h4>Email</h4>
           <input name="v_email" onChange={this.handleChange} />
           <h4>Password</h4>
-          <input name="v_password" onChange={this.handleChange} />
+          <input  type="password" name="v_password" onChange={this.handleChange} />
           <div className="button-group">
           <button onClick={this.handleClick}>Save Changes</button>
           <button onClick={this.props.toggleVol}>Cancel</button>
           </div>
-        </form>
+        </div>
       </div>
     );
   }

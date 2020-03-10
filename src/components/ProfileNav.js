@@ -33,7 +33,7 @@ class ProfileNav extends React.Component {
           </Link>
 
           <div className="dropdown">
-            <MdSettings size={25} className="dropbtn" />
+            <MdSettings size={30} className="dropbtn" />
             <div className="dropdown-content">
               {this.props.role !== "organization" ? (
                 <p onClick={this.toggleVol}>Edit</p>
