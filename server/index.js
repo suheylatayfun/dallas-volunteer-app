@@ -28,7 +28,7 @@ massive(CONNECTION_STRING).then(db =>{
     app.set('db', db);
     console.log('DB connected')
 })
-app.use( express.static( `${__dirname}/../build`));
+app.use( express.static( `${__dirname}/../build` ) );
 
 app.use(express.json());
 app.use(session({
@@ -118,9 +118,7 @@ app.post('/send-emails',(req,res)=>{
 app.post("/send-cancellation/:id",async (req, res) => {
     const {sender, topic, text} = req.query;
     const db = req.app.get('db');
-
     const id = +req.params.id;
-    console.log(req.query, req.params);
     let volunteerEmailList = await db.volunteer.getVolunteerEmailForDeletedEvent(id);
     const msg = {
         to: volunteerEmailList.map(v => v.v_email), 

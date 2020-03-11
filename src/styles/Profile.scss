@@ -4,7 +4,7 @@
 }
 .organization-profile-container,
 .volunteer-profile-container {
-  margin: 0 $size3;
+  margin: 0 $b-size3;
   box-shadow: 0px 1px 2px 1px rgb(184, 183, 183);
   border-radius: 2px;
   @include tablet() {
@@ -42,8 +42,8 @@
   border-radius: 80px;
   top: 50px;
   @include tablet() {
-    width: $size9;
-    height: $size9;
+    width:$b-size2;
+    height:$b-size2;
   }
 }
 #vol-name {
@@ -60,7 +60,7 @@
   bottom: 0;
   @include xphone() {
     font-size: 15px;
-    right: 0;
+    right: 5px;
   }
 }
 #v_count {
@@ -69,7 +69,7 @@
   bottom: 0;
   @include xphone() {
     font-size: 15px;
-    left: 0;
+    left:5px;
   }
 }
 .volunteer-info-container {
@@ -81,6 +81,21 @@
     font-weight: bold;
     list-style-type: disc;
     font-size: 17px;
+  }
+  @include tablet() {
+    width: 100%;
+    list-style-position: inside;
+  }
+  @include phone() {
+    li{
+      font-size: 16px;    
+    }
+  }
+  @include xphone() {
+    margin: 0;
+    li{
+      font-size: 15px;    
+    }
   }
 }
 #org-image {

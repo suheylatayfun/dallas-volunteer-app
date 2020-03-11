@@ -1,6 +1,5 @@
 import React from "react";
 import "./../styles/Header.scss";
-// import { Link } from "react-router-dom";
 import OrganizationLogin from "../components/organization/OrganizationLogin";
 import VolunteerLogin from "../components/volunteer/VolunteerLogin";
 import { FaUser } from "react-icons/fa";
@@ -24,7 +23,6 @@ class Header extends React.Component {
       <div>
         <div className="header-container">
           <h1 id="app-name">volevent</h1>
-
           <div className="dropdown">
             <FaUser size={35} className="dropbtn"/>
             <div className="dropdown-content">

@@ -27,6 +27,9 @@
     line-height: 25px;
     margin: 10px;
     width: 100%;
+    @include tablet() {
+      padding: 0;
+    }
   }
   textarea {
     height: 50px;
@@ -35,10 +38,10 @@
   #edit-date {
     width: 33%;
     line-height: 18px;
-    margin-bottom: 5px;
-    @include xphone() {
+    margin-bottom: 5px; 
+    @include tablet() {
       width: 40%;
-    }
+    } 
   }
   .time {
     margin-left: 50px;
@@ -65,10 +68,11 @@
     }
   }
   @include phone() {
-    width: 80%;
+    width: 100%;
   }
   @include xphone() {
-    width: 90%;
+    width: 95%;
+ 
   }
 }
 .google-places-autocomplete {

@@ -1,15 +1,14 @@
-$primary: rgb(219, 81, 81);
-$second: rgb(13, 36, 238);
-$size1: 50px;
+
 $size2: 20px;
-$size3: 250px;
 $size4: 70px;
-$size5: 100px;
+$size5: 50px;
 $size6: 300px;
 $size7: 30px;
 $size8: 60px;
-$size9: 120px;
-$size10: 230px;
+
+$b-size1:100px;
+$b-size2:120px;
+$b-size3: 250px;
 
 $margin-1: 5px;
 $margin-2: 10px;
@@ -22,9 +21,12 @@ $font-s3: 18px;
 $font-s4: 19px;
 $font-s5: 20px;
 
+$primary:#f55454; 
+
 $max-width: 1100px;
 $max-second-width: 690px;
 $max-third-width: 405px;
+
 
 @mixin tablet {
   @media (max-width: #{$max-width}) {
@@ -42,15 +44,24 @@ $max-third-width: 405px;
     @content;
   }
 }
-
 .welcome {
   background-color: #bbded6;
+  box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.60); 
+
   height: 100%;
-  margin: 0 $size3;
-  padding: 50px 80px;
+  margin: 0 $b-size3;
+  padding: $size5 80px;
   font-family: "Montserrat", sans-serif;
   @include tablet() {
     margin: 0;
+    padding: 65px;
+  }
+  @include phone() {
+    padding: 45px;
+  }
+  @include xphone() {
+    margin: 0;
+    padding: 20px;
   }
 }
 
@@ -61,12 +72,13 @@ $max-third-width: 405px;
   text-align: center;
   padding: 20px;
   z-index: -1;
-  margin: 30px 0;
+  margin: 10px 0 0 0;
   border-radius: 10px;
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.68);
+  // box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.68);
+  box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.15);
   @include tablet() {
-    width: 90%;
-    margin: 30px auto;
+    width: 100%;
+    margin: 20px auto;
     height: 2;
   }
   @include xphone() {
@@ -76,8 +88,11 @@ $max-third-width: 405px;
 }
 .about-info {
   font-size: $font-s2;
-  h2 {
-    margin-bottom: 11px;
+  h3 {
+    margin-bottom: 8px;
+  }
+  span{
+    text-shadow: 0px 0px 5px rgb(169, 175, 175);
   }
   @include tablet() {
     font-size: $font-s3;
@@ -103,6 +118,10 @@ $max-third-width: 405px;
   h2 {
     color: black;
     text-align: center;
+    margin-bottom: -5px;
+    @include xphone() {     
+      margin-bottom: -20px;
+    }
   }
   h2:hover {
     color: #f55454;
@@ -145,12 +164,11 @@ $max-third-width: 405px;
   }
 }
 .volunteer-count {
-  width: 200px;
-  height: 200px;
-  border-radius: 100px;
+  width: 180px;
+  height: 180px;
+  border-radius: 90px;
   background-color: rgb(250, 152, 152);
-  // color: white;
-  margin: 50px auto 0 auto;
+  margin: $size5 auto 0 auto;
   color: black;
   display: flex;
   flex-direction: column;
@@ -160,11 +178,15 @@ $max-third-width: 405px;
     height: 150px;
     width: 150px;
     font-size: 14px;
+    margin: 10px auto;
+  }
+  @include xphone() {
+    font-size: 13px;
   }
 }
 
 #opportunities {
-  margin-top: 70px;
+  margin-top: 50px;
   margin-bottom: 20px;
   text-align: center;
   @include xphone() {
@@ -179,7 +201,7 @@ $max-third-width: 405px;
   background-color: rgb(250, 152, 152);
   border-radius: $margin-1;
   @include tablet() {
-    height: 250px;
+    height:$b-size3;
     align-items: center;
     margin-top: 10px;
   }
@@ -211,7 +233,7 @@ $max-third-width: 405px;
 }
 .w-event-image-container {
   width: 187px;
-  height: 120px;
+  height:$b-size2;
   margin: $margin-1;
   @include tablet() {
     width: 95%;

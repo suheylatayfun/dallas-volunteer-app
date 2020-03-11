@@ -1,45 +1,46 @@
 @import './Welcome.scss';
-$padding: 10px;
 
 .header-container{
-    // margin: 0 $size3;
-    height:$size4;
-    // border: 1px solid rgb(0, 255, 34);
-    padding:0 $size3;
+    height:80px;
+    padding:0 $b-size3;
     box-sizing: border-box;
     display:flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 0px 0 rgba(0, 0, 0, 0.15);
     @include tablet() {
-      padding:5px;
-      height:50px; 
+      padding:0px;
+      height:60px;
+  }
+    @include xphone() {
+      display: inline block;
   }
 
 }
 #app-name{
     font-weight: bolder;
     font-size: 35px;
-    color:#f55454;
-    border: 3px solid #f55454;
+    color:$primary;
+    border: 3px solid $primary;
     padding: 3px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     @include tablet() {
-      font-size:20px;
-      border: 1px solid #f55454;
+      font-size:25px;
       font-weight: bold;      
-  }
+    }
   }
 .profile-bar{
   display: flex;
   align-items: center;
   font-weight: bolder;
+  color: $primary;
+  font-size: 19px;
 }
 .profile-image{
-  width: 60px;
-  height: 60px;
-  border-radius: 30px;
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
   box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.36);
   margin: 0 5px;
   @include tablet() {
@@ -54,27 +55,23 @@ $padding: 10px;
 
 
 .dropbtn {
-    // background-color: rgb(109, 125, 216);
     color:gray;
-    padding: 5px;
+    padding: 5px 10px;
     border: none;
     cursor: pointer;
     margin-bottom: -30px;
     @include tablet() {
       margin-bottom: -17px;
     }
-
   }
   .dropdown {
     position: relative;
     display: inline-block;
-    // margin-right: 15px;
   }
   .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    // max-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     right:0;
@@ -97,7 +94,7 @@ $padding: 10px;
   
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn {color:#f55454}
+.dropdown:hover .dropbtn {color:$primary}
   
   
 

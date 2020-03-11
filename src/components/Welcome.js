@@ -51,11 +51,11 @@ class Welcome extends Component {
           
           <div className="about">
             <div className="about-info">
-              <h2>About</h2>
+              <h3>About</h3>
               <p>
                 Volunteering is an activity where an individual or group
                 provides services for no financial or social gain "to benefit
-                another person, group or organization". This website is for bringing volunteers and organizations together 
+                another person, group or organization". <span>Volevent</span> is for bringing volunteers and organizations together 
                 on volunteering events.
               </p>
             </div>

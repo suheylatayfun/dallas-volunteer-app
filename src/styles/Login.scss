@@ -70,6 +70,12 @@
   @include phone() {
     width: 65%;
   }
+  @include xphone() {
+    width: 70%;
+    h3{
+      font-size: 15px;
+    }
+  }
 }
 #delete {
   position: absolute;
@@ -124,6 +130,9 @@
   }
   @include phone() {
     width: 80%;
+  }
+  @include xphone() {
+    width: 90%;
   }
 }
 .google-places-autocomplete {

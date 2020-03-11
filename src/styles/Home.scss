@@ -6,7 +6,7 @@ $height3: 320px;
 $height4: 180px;
 
 .parent-event-container {
-  margin: 0 $size3;
+  margin: 0 $b-size3;
   box-shadow: 0px 1px 1px 1px rgb(218, 218, 218);
   padding: 40px 0 0 0;
   box-sizing: border-box;
@@ -26,11 +26,13 @@ $height4: 180px;
   color: black;
   font-size: 18px;
   position: absolute;
-  right: 10px;
+  right: 5px;
   top: 25px;
   @include xphone() {
-    top: 20px;
+    top: 5px;
     font-size: 15px;
+    right: 0;
+
   }
 }
 #event-add-button:hover {
@@ -44,10 +46,11 @@ $height4: 180px;
   font-size: 25px;
   color: black;
   text-align: center;
-  margin-top: 45px;
+  margin-top: 35px;
   @include xphone() {
     font-size: 20px;
-    margin-top: 60px;
+    margin-top: 40px;
+    margin-bottom: -10px;
   }
 }
 .upcoming-events {
