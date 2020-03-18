@@ -20,15 +20,9 @@ class Welcome extends Component {
   }
   componentDidMount() {
     this.props.getEvents();
-    axios.get("/api/volunteer").then(response => {
-      this.setState({ v_count: response.data });
+    axios.get("/api/counts").then(response => {
+      this.setState({ v_count: response.data[0],o_count:response.data[1],e_count:response.data[2] });
     });
-    axios.get('/api/event').then(response=>{
-      this.setState({e_count:response.data})
-    })
-    axios.get('/api/organization').then(response=>{
-      this.setState({o_count:response.data})
-    })
   }
   render() {
     const responsive = {
@@ -68,6 +62,7 @@ class Welcome extends Component {
           <img
             src="https://www.kozagenclikdernegi.org/wp-content/uploads/2017/12/agh.jpg"
             className="welcome-image"
+            alt="count"
           />
           <p>
             Volunteering starts with just a few clicks. Find volunteering
