@@ -21,15 +21,28 @@ class Welcome extends Component {
   componentDidMount() {
     this.props.getEvents();
     axios.get("/api/counts").then(response => {
-      this.setState({ v_count: response.data[0],o_count:response.data[1],e_count:response.data[2] });
+      this.setState({ v_count: response.data[0].count,o_count:response.data[1].count,e_count:response.data[2].count});
     });
   }
   render() {
     const responsive = {
       desktop: {
-        breakpoint: { max: 3000, min: 1100 },
+        breakpoint: { max:3000, min:1100 },
         items: 3
+      },
+      tablet: {
+        breakpoint: { max:1100, min: 690 },
+        items: 3
+      },
+      phone:{
+        breakpoint: { max:690, min:405 },
+        items: 1
+      },
+      xphone:{
+        breakpoint: { max:405, min:0 },
+        items: 1
       }
+  
     };
 
     const moment = require("moment");
@@ -90,12 +103,12 @@ class Welcome extends Component {
                 alt="organizations"
                 id="o_icon"
               />
-              <h2>{this.state.o_count.count} + </h2>
+              <h2>{this.state.o_count} + </h2>
               <h3>ORGANIZATIONS</h3>
             </div>
             <div>
               <MdEventAvailable size="80px" color="#716e77" id="e_icon" />
-              <h2>{this.state.e_count.count} + </h2>
+              <h2>{this.state.e_count} + </h2>
               <h3>EVENTS</h3>
             </div>
             <div>
@@ -104,7 +117,7 @@ class Welcome extends Component {
                 alt="volunteers"
                 id="v_icon"
               />
-              <h2>{this.state.v_count.count} + </h2>
+              <h2>{this.state.v_count} + </h2>
               <h3>VOLUNTEERS</h3>
             </div>
           </div>
