@@ -7,7 +7,6 @@ import {
 } from "./../../redux/reducers/organizationReducer";
 import {Redirect} from 'react-router-dom';
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
-import "../../styles/Register.scss";
 require('dotenv').config();
 const {REACT_APP_cloudName,REACT_APP_uploadPreset} = process.env;
 

@@ -3,7 +3,6 @@ import Nav from "./Nav";
 import { connect } from "react-redux";
 import { getEvents } from "./../redux/reducers/eventReducer";
 import { getSession } from "./../redux/reducers/userReducer";
-import "./../styles/Home.scss";
 import DetailedEvent from "../components/event/DetailedEvent";
 import { IoIosPin } from "react-icons/io";
 import { MdDateRange } from "react-icons/md";
@@ -35,12 +34,12 @@ class Home extends React.Component {
       // console.log(el)
       return (
         <div key={el.e_id} className="event-container" onClick={() => this.toggleEvent(el.e_id)}>
-          <h3 id="event-title">{el.e_title}</h3>
           <img
             src={el.e_image}
             alt="event"
             className="event-image-container"
           />
+          <h3 id="event-title">{el.e_title}</h3>
           <div>
             <p id="event-address">
               <IoIosPin size={18} />

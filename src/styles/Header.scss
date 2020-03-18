@@ -1,5 +1,6 @@
 @import './Welcome.scss';
 
+
 .header-container{
     height:80px;
     padding:0 $b-size3;
@@ -8,6 +9,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    background-color:whitesmoke;
+    border-bottom: 5px solid $primary;
+    // background-image: url('https://images.unsplash.com/photo-1575382206031-8bfdbe615dbf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80');
     box-shadow: 0 1px 0px 0 rgba(0, 0, 0, 0.15);
     @include tablet() {
       padding:0px;
@@ -24,7 +28,7 @@
     color:$primary;
     border: 3px solid $primary;
     padding: 3px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    // font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     @include tablet() {
       font-size:25px;
       font-weight: bold;      

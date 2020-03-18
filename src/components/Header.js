@@ -1,5 +1,4 @@
 import React from "react";
-import "./../styles/Header.scss";
 import OrganizationLogin from "../components/organization/OrganizationLogin";
 import VolunteerLogin from "../components/volunteer/VolunteerLogin";
 import { FaUser } from "react-icons/fa";

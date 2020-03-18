@@ -5,7 +5,6 @@ import {
   getApprovedEvents,
   getPastEvents
 } from "./../../redux/reducers/volunteerReducer";
-import "../../styles/Events.scss";
 
 class VolunteerEvents extends React.Component {
   constructor() {

@@ -2,7 +2,6 @@ import React from "react";
 import ProfileNav from "../ProfileNav"
 import { connect } from "react-redux";
 import VolunteerEvents from '../../components/volunteer/VolunteerEvents';
-import "../../styles/Profile.scss";
 import { getVolunteerSession,getPastEvents} from "./../../redux/reducers/volunteerReducer";
 
 class VolunteerProfile extends React.Component {

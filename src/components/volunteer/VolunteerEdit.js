@@ -6,7 +6,6 @@ import {
 import { connect } from "react-redux";
 import {Redirect} from 'react-router-dom';
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
-import '../../styles/Edit.scss';
 require('dotenv').config();
 const {REACT_APP_cloudName,REACT_APP_uploadPreset} = process.env;
 

@@ -6,8 +6,6 @@ import {
   loginVolunteer
 } from "./../../redux/reducers/volunteerReducer";
 import VolunteerRegister from "../../components/volunteer/VolunteerRegister";
-
-import "../../styles/Login.scss";
 import { TiDeleteOutline } from "react-icons/ti";
 
 class VolunteerLogin extends React.Component {

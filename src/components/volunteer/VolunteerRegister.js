@@ -6,7 +6,6 @@ import {
   registerVolunteer,
   loginVolunteer
 } from "../../redux/reducers/volunteerReducer";
-import "../../styles/Register.scss";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 require("dotenv").config();
 const { REACT_APP_cloudName, REACT_APP_uploadPreset } = process.env;

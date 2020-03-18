@@ -10,6 +10,7 @@
   align-items: center;
 }
 .detailed-event {
+  color: rgb(61, 61, 61);
   width: 600px;
   padding: 20px;
   border: 1px solid black;
@@ -47,7 +48,7 @@
 }
 #join-button {
   line-height: 25px;
-  background-color: #bbded6;
+  background-color:$second;
   font-size: 20px;
   border: 1px solid rgb(160, 160, 160);
   border-radius: 5px;

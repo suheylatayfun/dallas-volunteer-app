@@ -1,4 +1,9 @@
 module.exports = {
+    getEventCount: async(req,res)=>{
+        const db = req.app.get('db');
+        let count = await db.event.getEventCount();
+          res.status(200).json(count[0]);
+      },
     getEvents: (req,res)=>{
         const db = req.app.get('db');
         db.event.getGeneralEventInfo().then(response=>{

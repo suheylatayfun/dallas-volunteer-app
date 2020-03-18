@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/Footer.scss'
 function Footer(){
     let currentTimeLine = new Date();
     let currentYear =currentTimeLine.getFullYear()

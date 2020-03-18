@@ -4,6 +4,7 @@
 }
 .organization-profile-container,
 .volunteer-profile-container {
+  color: rgb(61, 61, 61);
   margin: 0 $b-size3;
   box-shadow: 0px 1px 2px 1px rgb(184, 183, 183);
   border-radius: 2px;
@@ -28,7 +29,7 @@
 }
 .volunteer-image-container {
   width: $width1;
-  background-color: #bbded6;
+  background-color:$second;
   text-align: center;
   padding: 20px;
   box-sizing: border-box;

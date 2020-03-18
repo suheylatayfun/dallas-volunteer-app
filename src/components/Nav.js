@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/Header.scss";
 import { connect } from "react-redux";
 import { logout} from "../redux/reducers/userReducer";
 import { Link } from "react-router-dom";

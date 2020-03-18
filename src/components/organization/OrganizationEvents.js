@@ -8,7 +8,6 @@ import { deleteEvent } from "./../../redux/reducers/eventReducer";
 import axios from "axios";
 import EditEvent from "./../event/EditEvent";
 import EventVolunteerList from '../event/EventVolunteerList';
-import "../../styles/Events.scss";
 import DetailedEvent from '../event/DetailedEvent';
 
 class OrganizationEvents extends React.Component {
@@ -147,8 +146,6 @@ class OrganizationEvents extends React.Component {
                   <th>Where</th>
                   <th>When</th>
                   <th>What time</th>
-                  <th></th>
-                  <th></th>
                   <th></th>
                 </tr>
               </thead>

@@ -1,4 +1,9 @@
 module.exports = {
+  getOrganizationCount: async(req,res)=>{
+    const db = req.app.get('db');
+    let count = await db.organization.getOrganizationCount();
+      res.status(200).json(count[0]);
+  },
   getOrganizationUpcomingEvents: async (req, res) => {
     const db = req.app.get("db");
     const upcomingEvents = await db.organization.getOrganizationUpcomingEvents( req.session.organization.o_id);

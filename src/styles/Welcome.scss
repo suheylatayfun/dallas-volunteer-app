@@ -1,17 +1,19 @@
-
 $size2: 20px;
+$size3: 30px;
 $size4: 70px;
 $size5: 50px;
 $size6: 300px;
 $size7: 30px;
 $size8: 60px;
 
-$b-size1:100px;
-$b-size2:120px;
+$b-size1: 100px;
+$b-size2: 120px;
 $b-size3: 250px;
+$b-size4: 150px;
 
 $margin-1: 5px;
 $margin-2: 10px;
+$margin-3: 15px;
 $width1: 100%;
 $width2: 50%;
 
@@ -21,12 +23,12 @@ $font-s3: 18px;
 $font-s4: 19px;
 $font-s5: 20px;
 
-$primary:#f55454; 
+$primary: #ea7070;
+$second: #8ac6d1;
 
 $max-width: 1100px;
 $max-second-width: 690px;
 $max-third-width: 405px;
-
 
 @mixin tablet {
   @media (max-width: #{$max-width}) {
@@ -45,13 +47,10 @@ $max-third-width: 405px;
   }
 }
 .welcome {
-  background-color: #bbded6;
-  box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.60); 
-
+  box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.6);
   height: 100%;
   margin: 0 $b-size3;
-  padding: $size5 80px;
-  font-family: "Montserrat", sans-serif;
+  padding: $size5 0px;
   @include tablet() {
     margin: 0;
     padding: 65px;
@@ -61,187 +60,258 @@ $max-third-width: 405px;
   }
   @include xphone() {
     margin: 0;
-    padding: 20px;
+    padding: $size2;
   }
 }
 
-.about {
+.about-info {
+  font-size: $font-s4;
+  color: rgb(94, 93, 93);
   width: 100%;
-  background-color: white;
   line-height: 21px;
   text-align: center;
-  padding: 20px;
+  padding: $size2;
   z-index: -1;
-  margin: 10px 0 0 0;
-  border-radius: 10px;
-  // box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.68);
-  box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.15);
-  @include tablet() {
-    width: 100%;
-    margin: 20px auto;
-    height: 2;
-  }
-  @include xphone() {
-    font-size: 17px;
-    width: 100%;
-  }
-}
-.about-info {
-  font-size: $font-s2;
   h3 {
-    margin-bottom: 8px;
-  }
-  span{
-    text-shadow: 0px 0px 5px rgb(169, 175, 175);
+    margin-bottom: 15px;
   }
   @include tablet() {
-    font-size: $font-s3;
-    border-radius: 5px;
-  }
-  @include xphone() {
-    font-size: 14px;
-  }
-}
-.how {
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-top: $font-s5;
-  @include phone() {
-    flex-direction: column;
-  }
-}
-
-.how-works {
-  margin-top: 50px;
-  h2 {
-    color: black;
-    text-align: center;
-    margin-bottom: -5px;
-    @include xphone() {     
-      margin-bottom: -20px;
+    margin: 20px auto;
+    padding: $size2;
+    font-size: 18px;
+    @include phone() {
+      font-size: 17px;
+      h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
     }
   }
-  h2:hover {
-    color: #f55454;
-  }
-  @include xphone() {
-    font-size: 15px;
-  }
 }
 
-#org-how,
-#vol-how {
-  width: 45%;
-  height: 200px;
-  padding: $font-s5;
-  font-size: $font-s3;
-  background-color: white;
-  box-shadow: 0px 1px 1px 1px rgb(124, 123, 123);
-  border-radius: 8px;
-  font-size: $font-s4;
-  h3 {
-    text-align: center;
+.welcome-container {
+  margin: 0 $b-size3;
+  background-color: #8ac6d1;
+  text-align: center;
+  padding: 30px 0;
+  border-bottom: 5px solid $primary;
+  p,
+  h2 {
+    color: white;
   }
   p {
-    list-style: square inside;
-    display: list-item;
+    font-size: 23px;
   }
   @include tablet() {
-    height: 180px;
-    margin: $margin-2;
-    padding: $margin-2;
-    font-size: $font-s4;
-  }
-  @include phone() {
-    height: 100%;
-    width: 80%;
+    margin: 0;
   }
   @include xphone() {
-    font-size: 16px;
-    width: 100%;
+    h2 {
+      font-size:$font-s5;
+    }
+    p {
+      font-size: 18px;
+    }
   }
 }
-.volunteer-count {
-  width: 180px;
-  height: 180px;
-  border-radius: 90px;
-  background-color: rgb(250, 152, 152);
-  margin: $size5 auto 0 auto;
-  color: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.welcome-image {
+  height: 400px;
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: 5px;
+  @include tablet() {
+    height: 350px;
+    width: 70%;
+  }
   @include phone() {
-    height: 150px;
-    width: 150px;
-    font-size: 14px;
-    margin: 10px auto;
+    height: 300px;
+    width: 70%;
   }
   @include xphone() {
-    font-size: 13px;
+    width: 90%;
+    height: 250px;
   }
 }
 
 #opportunities {
   margin-top: 50px;
-  margin-bottom: 20px;
+  margin-bottom:$font-s5;
   text-align: center;
+  color: rgb(97, 97, 97);
   @include xphone() {
-    font-size: 20px;
+    font-size:$font-s5;
   }
 }
-.w-event-parent {
-  width: 100%;
-  height: 290px;
-  display: flex;
-  overflow-x: scroll;
-  background-color: rgb(250, 152, 152);
+
+
+
+
+
+
+.react-multi-carousel-list{
+  height: 350px;
+  background-color: $second;
   border-radius: $margin-1;
+  margin: 0 30px;
   @include tablet() {
-    height:$b-size3;
-    align-items: center;
-    margin-top: 10px;
+    height:330px ;
+    margin:0;
+  }
+  @include phone() {
+    height:300px ;
+    padding: 10px 5px;
+  }
+  @include xphone() {
+    margin:0 10px;
+    padding: 5px;
   }
 }
-.w-event-parent::-webkit-scrollbar {
-  display: none;
-}
+
 .w-event-container {
-  width: 200px;
-  // height:260px;
-  height: 90%;
-  border: 1px solid rgb(224, 222, 222);
-  margin: 15px 10px 0 10px;
-  padding-top: 10px;
-  background-color: white;
-  box-sizing: border-box;
-  flex-shrink: 0;
+  height: 320px;
+  width: 95%;
   border-radius: $margin-1;
-  scroll-behavior: smooth;
+  margin: 10px 15px;
+  background-color: white;
   @include tablet() {
-    margin-bottom: 15px;
+    height: 300px;
   }
-}
+  @include phone() {
+    height: 280px;
+  }
+  @include xphone() {
+    margin: 10px 15px;
+    width: 85%;
+  }
+} 
 #w-event-title {
   text-align: center;
+  padding: 10px 0;
+  color: rgb(97, 97, 97);
   @include tablet() {
     font-size: 15px;
   }
 }
 .w-event-image-container {
-  width: 187px;
-  height:$b-size2;
-  margin: $margin-1;
+  width: 100%;
+  height: $b-size4;
   @include tablet() {
-    width: 95%;
-    height: 80px;
+    width: 100%;
+    height: 150px;
+  }
+  @include phone() {
+    width: 100%;
   }
 }
+
 #w-event-address,
 #w-event-date {
-  font-size: 13px;
-  margin: $margin-1;
+  font-size: 14px;
+  margin: $margin-2;
+  line-height: 19px;
 }
+
+
+
+
+
+
+
+
+
+
+
+.numbers-container {
+  margin: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  color: rgb(97, 97, 97);
+  @include tablet{
+    font-size: 16px;
+    margin: 70px 50px;
+  }
+  @include phone() {
+   margin: 50px 20px ;
+   font-size: 14px;
+  }
+  @include xphone() {
+   font-size: 13px;
+  }
+}
+#o_icon{
+  width:75px;
+  @include phone() {
+    width:70px;
+   }
+  @include xphone() {
+    width:55px;
+    margin-bottom: 15px;
+   }
+  
+}
+#e_icon{
+  margin:-5px;
+  @include phone() {
+    width: 75px;
+   }
+   @include xphone() {
+    width:60px;
+   }
+
+}
+#v_icon{
+  width:120px;
+  height:80px;
+  margin:-5px; 
+  @include phone() {
+    width: 100px;
+    height: 80px;
+   } 
+   @include xphone() {
+    width:80px;
+   }     
+}
+
+.how {
+  width: 100%;
+  height: 250px;
+  color: rgb(97, 97, 97);
+  display: flex;
+  background-color: #8ac6d1;
+  justify-content: center;
+  align-items: center;
+  @include phone() {
+    height: 450px;
+    flex-direction: column;
+    justify-content:space-evenly;
+  }
+}
+
+#org-how,
+#vol-how {
+  width: 42%;
+  height: 80%;
+  margin: 0 $margin-2;
+  padding: $size2;
+  background-color: white;
+  font-size: $font-s3;
+  text-align: center;
+  border-radius: 5px;
+  h3 {
+    margin-bottom: 10px;
+  }
+  @include tablet() {
+    font-size: $font-s2;
+  }
+  @include phone() {
+    width: 70%;
+    height:40%;
+    margin: 0px;
+  }
+  @include xphone() {
+    width: 80%;
+  }
+}
+
+

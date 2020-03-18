@@ -14,13 +14,13 @@ const {registerVolunteer,registerOrganization,loginVolunteer,loginOrganization,l
 // const {usersOnly} = require('./middleware/authMiddleware');
 
 //event controller
-const{getEvents,getDetailedEvent,getDetailedEventForEdit,addEvent,getPendingVolunteers,getEventVolunteers,deleteEvent,getDeletedEventVolunteerEmail,editEventInfo}= require('./controllers/eventController');
+const{getEvents,getDetailedEvent,getDetailedEventForEdit,addEvent,getPendingVolunteers,getEventVolunteers,deleteEvent,getDeletedEventVolunteerEmail,editEventInfo,getEventCount}= require('./controllers/eventController');
 
 //volunteer controller
 const {volunteerEvent,getPendingEvents,getApprovedEvents,getPastEvents,getVolunteerCount} = require('./controllers/volunteerController');
 
 //organization Controller
-const {getOrganizationUpcomingEvents,getOrganizationPastEvents,acceptVolunteer,declineVolunteer}= require('./controllers/organizationController');
+const {getOrganizationUpcomingEvents,getOrganizationPastEvents,acceptVolunteer,declineVolunteer,getOrganizationCount}= require('./controllers/organizationController');
 
 
 //DB connection
@@ -59,6 +59,7 @@ app.get('/api/event/edit/:id',getDetailedEventForEdit);
 
 app.post('/api/events',addEvent);
 app.get('/api/events',getEvents);
+app.get('/api/event',getEventCount);
 
 //volunteer-event endpoints
 app.post('/api/volunteer/event',volunteerEvent);
@@ -80,6 +81,7 @@ app.delete('/api/event/volunteer/:id',declineVolunteer);
 
 //organization endpoints
 app.put('/api/organization/edit',editOrganizationInfo);
+app.get('/api/organization',getOrganizationCount);
 
 //SENDGRID
 

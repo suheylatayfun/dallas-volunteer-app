@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getDetailedEvent } from "../../redux/reducers/eventReducer";
 import { volunteerEvent } from "../../redux/reducers/volunteerReducer";
-import "../../styles/DetailedEvent.scss";
 import { TiDeleteOutline } from "react-icons/ti";
 import { MdEmail, MdLocationOn, MdInfo } from "react-icons/md";
 import { IoIosContact, IoIosPeople, IoIosTime } from "react-icons/io";

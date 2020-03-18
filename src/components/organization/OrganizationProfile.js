@@ -1,7 +1,6 @@
 import React from "react";
 import ProfileNav from "./../ProfileNav";
 import OrganizationEvents from '../organization/OrganizationEvents';
-import "../../styles/Profile.scss";
 import { connect } from "react-redux";
 import { getOrganizationSession } from "../../redux/reducers/organizationReducer";
 import {MdEmail,MdLocationOn} from "react-icons/md";

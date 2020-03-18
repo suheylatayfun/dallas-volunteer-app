@@ -8,7 +8,6 @@ import {
 import { getUpcomingEvents } from "../../redux/reducers/organizationReducer";
 // import {Link} from 'react-router-dom';
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
-import "./../../styles/EditEvent.scss";
 let moment = require("moment");
 require("dotenv").config();
 const { REACT_APP_cloudName, REACT_APP_uploadPreset } = process.env;

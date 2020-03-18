@@ -10,7 +10,6 @@ import {
   declineVolunteer
 } from "../../redux/reducers/volunteerReducer";
 import axios from "axios";
-import "../../styles/EventVolunteerList.scss";
 import { TiDelete } from "react-icons/ti";
 
 class EventVolunteerList extends React.Component {
@@ -125,10 +124,12 @@ class EventVolunteerList extends React.Component {
                     {selectedVolunteerInfo.v_why_interested_in_volunteering}
                   </span>{" "}
                 </p>
-                <p>
-                  Have you been a volunteer before?
-                  {selectedVolunteerInfo.v_been_a_volunteer_before}
-                </p>
+                <p>Have you been a volunteer before?</p>
+                <span>
+                  {selectedVolunteerInfo.v_been_a_volunteer_before === true
+                    ? "Yes"
+                    : "No"}
+                </span>
                 <p>Interests</p>
                 <p>
                   <span>{selectedVolunteerInfo.v_interests}</span>{" "}
