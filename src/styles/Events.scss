@@ -17,7 +17,6 @@
 }
 .react-tabs__tab--selected,
 .react-tabs__tab-panel {
-  // background-image: linear-gradient($second, white);
   background-color: $second;
 }
 
@@ -41,7 +40,6 @@ table {
 }
 th {
   height: 30px;
-  text-align: center;
   border: 1px solid rgb(190, 190, 190);
   background-color: white;
   font-size: 16px;
