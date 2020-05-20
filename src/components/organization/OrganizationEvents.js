@@ -2,13 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import {
   getUpcomingEvents,
-  getPastEvents
+  getPastEvents,
 } from "../../redux/reducers/organizationReducer";
 import { deleteEvent } from "./../../redux/reducers/eventReducer";
 import axios from "axios";
 import EditEvent from "./../event/EditEvent";
-import EventVolunteerList from '../event/EventVolunteerList';
-import DetailedEvent from '../event/DetailedEvent';
+import EventVolunteerList from "../event/EventVolunteerList";
+import DetailedEvent from "../event/DetailedEvent";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 
 class OrganizationEvents extends React.Component {
   constructor() {
@@ -18,9 +20,9 @@ class OrganizationEvents extends React.Component {
       topic: "Event cancellation",
       event_id: 0,
       canEdit: false,
-      showVol:false,
+      showVol: false,
       isEventInfoOpen: false,
-      vol_count: 0
+      vol_count: 0,
     };
   }
   componentDidMount() {
@@ -29,35 +31,36 @@ class OrganizationEvents extends React.Component {
     this.props.getUpcomingEvents(o_id);
     this.props.getPastEvents(o_id);
   }
-  switchToPastView = () => {
-    this.setState({ isPastEventVisible: true });
-  };
-  switchToUpcomingView = () => {
-    this.setState({ isPastEventVisible: false });
-  };
+
   sendEmailsToDeletedEventVolunteers = (id, o_email, topic, text) => {
     axios
       .post(
         `/send-cancellation/${id}?sender=${o_email}&topic=${topic}&text=${text}`
       )
-      .then(response => console.log(response))
-      .catch(err => {
+      .then((response) => console.log(response))
+      .catch((err) => {
         console.log(err);
       });
     window.alert(
       "We sent your event cancellation information to event volunteers."
     );
   };
-  toggle = id => {
+  toggle = (id) => {
     this.setState({ canEdit: !this.state.canEdit, event_id: id });
   };
-  showVol = (id,count)=>{
-    this.setState({ showVol: !this.state.showVol, event_id: id,vol_count:count });
-  }
-  openEventInfo = (id)=>{
-    this.setState({isEventInfoOpen:!this.state.isEventInfoOpen, event_id: id})
-  }
-
+  showVol = (id, count) => {
+    this.setState({
+      showVol: !this.state.showVol,
+      event_id: id,
+      vol_count: count,
+    });
+  };
+  openEventInfo = (id) => {
+    this.setState({
+      isEventInfoOpen: !this.state.isEventInfoOpen,
+      event_id: id,
+    });
+  };
 
   render() {
     const moment = require("moment");
@@ -65,17 +68,21 @@ class OrganizationEvents extends React.Component {
     const o_email = this.props.organization.o_email;
     const o_id = this.props.organization.o_id;
     const { upcomingEvents, pastEvents } = this.props;
-    const mappedUpcomingEvent = upcomingEvents.map(el => {
+    const mappedUpcomingEvent = upcomingEvents.map((el) => {
       return (
         <tbody key={el.e_id}>
           <tr>
-            <td onClick={()=>{this.openEventInfo(el.e_id)}}>
-             <u>{el.e_title}</u> 
+            <td
+              onClick={() => {
+                this.openEventInfo(el.e_id);
+              }}
+            >
+              <u>{el.e_title}</u>
             </td>
             <td>{el.e_address}</td>
             <td>{moment(el.e_date).format("LL")}</td>
             <td>
-              {el.e_start_time} -{el.e_end_time}
+              {el.e_start_time}-{el.e_end_time}
             </td>
             <td>
               <button
@@ -86,7 +93,7 @@ class OrganizationEvents extends React.Component {
               >
                 Edit
               </button>
-            
+
               <button
                 onClick={() => {
                   if (
@@ -108,14 +115,20 @@ class OrganizationEvents extends React.Component {
               >
                 Delete
               </button>
-                <button id="event-setting-button" onClick={()=>{this.showVol(el.e_id,el.e_volunteer_count)}}>Volunteers</button>
-            
+              <button
+                id="event-setting-button"
+                onClick={() => {
+                  this.showVol(el.e_id, el.e_volunteer_count);
+                }}
+              >
+                Volunteers
+              </button>
             </td>
           </tr>
         </tbody>
       );
     });
-    const mappedPastEvent = pastEvents.map(el => {
+    const mappedPastEvent = pastEvents.map((el) => {
       return (
         <tbody key={el.e_id}>
           <tr>
@@ -123,7 +136,7 @@ class OrganizationEvents extends React.Component {
             <td>{el.e_address}</td>
             <td>{moment(el.e_date).format("LL")}</td>
             <td>
-              {el.e_start_time} -{el.e_end_time}
+              {el.e_start_time}-{el.e_end_time}
             </td>
           </tr>
         </tbody>
@@ -131,14 +144,13 @@ class OrganizationEvents extends React.Component {
     });
 
     return (
-      <div className="event-table-parent">
-        <div className="event-type-buttons">
-        <button onClick={this.switchToUpcomingView}>UPCOMING EVENTS</button>
-        <button onClick={this.switchToPastView}>PAST EVENTS</button>
-        </div>
-        {!this.state.isPastEventVisible ? (
-          <div className="event-table">
-            {mappedUpcomingEvent.length !==0 ? (
+      <Tabs>
+        <TabList>
+          <Tab>Upcoming Events</Tab>
+          <Tab>Past Events</Tab>
+        </TabList>
+        <TabPanel>
+          {mappedUpcomingEvent.length !== 0 ? (
             <table>
               <thead>
                 <tr>
@@ -151,13 +163,12 @@ class OrganizationEvents extends React.Component {
               </thead>
               {mappedUpcomingEvent}
             </table>
-            ):(
-            <h4>No pending event</h4>
-            )}
-          </div>
-        ) : (
-          <div className="event-table">
-           {mappedPastEvent.length !== 0 ? (
+          ) : (
+            <h4>No upcoming event</h4>
+          )}
+        </TabPanel>
+        <TabPanel>
+          {mappedPastEvent.length !== 0 ? (
             <table>
               <thead>
                 <tr>
@@ -169,32 +180,39 @@ class OrganizationEvents extends React.Component {
               </thead>
               {mappedPastEvent}
             </table>
-           ):(
-             <h4>No past event</h4>
-           )}
-          </div>
-        )}
+          ) : (
+            <h4>No past event</h4>
+          )}
+        </TabPanel>
         {this.state.canEdit ? (
           <EditEvent toggle={this.toggle} event_id={this.state.event_id} />
         ) : null}
-        {this.state.showVol? (
-          <EventVolunteerList showVol={this.showVol} event_id={this.state.event_id} vol_count={this.state.vol_count}/>
-        ):null}
-        {this.state.isEventInfoOpen?<DetailedEvent openEventInfo={this.openEventInfo} e_id={this.state.event_id}/>:null
-        }
-    </div>
+        {this.state.showVol ? (
+          <EventVolunteerList
+            showVol={this.showVol}
+            event_id={this.state.event_id}
+            vol_count={this.state.vol_count}
+          />
+        ) : null}
+        {this.state.isEventInfoOpen ? (
+          <DetailedEvent
+            openEventInfo={this.openEventInfo}
+            e_id={this.state.event_id}
+          />
+        ) : null}
+      </Tabs>
     );
   }
 }
-const mapStateToProps = reduxState => {
+const mapStateToProps = (reduxState) => {
   return {
     upcomingEvents: reduxState.organization.upcomingEvents,
     pastEvents: reduxState.organization.pastEvents,
-    organization: reduxState.organization.organization
+    organization: reduxState.organization.organization,
   };
 };
 export default connect(mapStateToProps, {
   getUpcomingEvents,
   getPastEvents,
-  deleteEvent
+  deleteEvent,
 })(OrganizationEvents);

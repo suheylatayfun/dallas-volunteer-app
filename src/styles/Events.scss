@@ -1,63 +1,38 @@
 @import "./Welcome.scss";
 
-.event-table-parent {
-  width: $width1;
-}
-
-.event-type-buttons {
-  display: flex;
-  font-size: 30px;
-  justify-content: space-evenly;
-  align-items: center;
-  margin: -3px $b-size3 0;
-  background-color: $second;
-  box-shadow: 0 1px 0px 2px rgba(0, 0, 0, 0.15);
-  @include tablet() {
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    @include phone() {
-      font-size: 20px;
-      width: 100%;
-    }
-  }
-
-  button {
-    margin: 30px 5px 0 5px;
-    font-weight: bold;
-    font-size: $font-s4;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    color: black;
-    @include tablet() {
-      font-size: 18px;
-      margin:15px 5px 5px 5px;
-    }  
-    @include phone() {
-      font-size: 17px;
-    }  
-  }
-  button:hover {
-    color: #f55454;
-  }
-}
-.event-table {
-  box-shadow: 0px 1px 2px 1px rgb(184, 183, 183);
-  background-color:$second;
+.react-tabs__tab-list {
+  font-weight: bold;
   margin: 0 $b-size3;
-  padding: 20px 35px 300px 35px;
+  text-align: center;
+  @include tablet() {
+    margin: 0 $b-size4;
+  }
+  @include phone() {
+    margin: 0px;
+    font-size: 15px;
+  }
+  @include xphone() {
+    font-size: 13px;
+  }
+}
+.react-tabs__tab--selected,
+.react-tabs__tab-panel {
+  // background-image: linear-gradient($second, white);
+  background-color: $second;
+}
+
+.react-tabs__tab-panel {
+  margin: 0 $b-size3;
+  min-height: 50vh;
+  padding: 25px;
   @include tablet() {
     width: 100%;
     margin: 0;
-    // padding: 30px;
+    padding: 20px;
   }
   @include phone() {
     width: 100%;
-    padding: 20px;
-  }
-  @include xphone() {
-    padding: 2px;
+    padding: 0px;
   }
 }
 table {
@@ -69,8 +44,9 @@ th {
   text-align: center;
   border: 1px solid rgb(190, 190, 190);
   background-color: white;
-  font-size: 17px;
-  width:50px;
+  font-size: 16px;
+  width: 50px;
+  color: #f55454;
   @include tablet() {
     font-size: 17px;
   }
@@ -81,16 +57,18 @@ th {
     font-size: 14px;
   }
 }
+
 td {
   height: 50px;
   text-align: center;
   background-color: white;
   border: 1px solid rgb(190, 190, 190);
+  font-size: 15px;
   u:hover {
     color: #f55454;
   }
   @include tablet() {
-    font-size: 16px;
+    font-size: 14px;
   }
   @include phone() {
     font-size: 13px;

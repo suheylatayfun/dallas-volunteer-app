@@ -8,41 +8,45 @@ import axios from "axios";
 import Footer from "../components/Footer";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import volunteers from "../asset/volunteers.jpg";
 
 class Welcome extends Component {
   constructor() {
     super();
     this.state = {
       v_count: 0,
-      o_count:0,
-      e_count:0,
+      o_count: 0,
+      e_count: 0,
     };
   }
   componentDidMount() {
     this.props.getEvents();
-    axios.get("/api/counts").then(response => {
-      this.setState({ v_count: response.data[0].count,o_count:response.data[1].count,e_count:response.data[2].count});
+    axios.get("/api/counts").then((response) => {
+      this.setState({
+        v_count: response.data[0].count,
+        o_count: response.data[1].count,
+        e_count: response.data[2].count,
+      });
     });
   }
   render() {
     const responsive = {
       desktop: {
-        breakpoint: { max:3000, min:1100 },
-        items: 3
+        breakpoint: { max: 3000, min: 1100 },
+        items: 3,
       },
       tablet: {
-        breakpoint: { max:1100, min: 690 },
-        items: 3
+        breakpoint: { max: 1100, min: 690 },
+        items: 3,
       },
-      phone:{
-        breakpoint: { max:690, min:405 },
-        items: 1
+      phone: {
+        breakpoint: { max: 690, min: 405 },
+        items: 1,
       },
-      xphone:{
-        breakpoint: { max:405, min:0 },
-        items: 1
-      }
-  
+      xphone: {
+        breakpoint: { max: 405, min: 0 },
+        items: 1,
+      },
     };
 
     const moment = require("moment");
@@ -72,11 +76,7 @@ class Welcome extends Component {
         <Header />
         <div className="welcome-container">
           <h2>WE MADE VOLUNTEERING EASY</h2>
-          <img
-            src="https://www.kozagenclikdernegi.org/wp-content/uploads/2017/12/agh.jpg"
-            className="welcome-image"
-            alt="count"
-          />
+          <img src={volunteers} className="welcome-image" alt="volunteers" />
           <p>
             Volunteering starts with just a few clicks. Find volunteering
             opportunities around you!
@@ -84,14 +84,15 @@ class Welcome extends Component {
         </div>
 
         <div className="welcome">
-            <div className="about-info">
-              <h3>What is Volevent?</h3>
-              <div>
-                Volevent is a volunteering platform where organizations can
-                share events in need of volunteers and volunteers may check for events, attend them to help the community improve.
-              </div>
+          <div className="about-info">
+            <h3>What is Volevent?</h3>
+            <div>
+              Volevent is a volunteering platform where organizations can share
+              events in need of volunteers and volunteers may check for events,
+              attend them to help the community improve.
             </div>
-            
+          </div>
+
           <h2 id="opportunities">Upcoming volunteer opportunities</h2>
           <Carousel responsive={responsive} className="w-event-parent">
             {mappedEvents}
@@ -126,7 +127,8 @@ class Welcome extends Component {
             <div id="org-how">
               <h3>Are you an Organization?</h3>
               <p>
-                Register your organization and post your event to enhance the quality of life . Start connecting with volunteers.
+                Register your organization and post your event to enhance the
+                quality of life . Start connecting with volunteers.
               </p>
             </div>
             <div id="vol-how">
@@ -144,9 +146,9 @@ class Welcome extends Component {
     );
   }
 }
-const mapStateToProps = reduxState => {
+const mapStateToProps = (reduxState) => {
   return {
-    events: reduxState.events.events
+    events: reduxState.events.events,
   };
 };
 

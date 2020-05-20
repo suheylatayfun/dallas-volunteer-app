@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import {
   updateState,
   addEvent,
-  getEvents
+  getEvents,
 } from "../../redux/reducers/eventReducer";
 import { Redirect } from "react-router-dom";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
@@ -15,15 +15,15 @@ class AddEvent extends React.Component {
     super();
     this.state = {
       shouldRedirect: false,
-      e_image: ""
+      e_image: "",
     };
   }
   componentDidMount() {
     this.setState({
-      e_image: this.props.events.e_image
+      e_image: this.props.events.e_image,
     });
   }
-  handleChange = e => {
+  handleChange = (e) => {
     this.props.updateState({ [e.target.name]: e.target.value });
   };
   handleClick = () => {
@@ -34,7 +34,7 @@ class AddEvent extends React.Component {
       e_start_time,
       e_end_time,
       e_details,
-      e_volunteer_count
+      e_volunteer_count,
     } = this.props.events;
     this.props.addEvent(
       e_title,
@@ -67,7 +67,7 @@ class AddEvent extends React.Component {
           cloudName: `${REACT_APP_cloudName}`,
           uploadPreset: `${REACT_APP_uploadPreset}`,
           sources: ["local", "url", "camera", "instagram"],
-          default: false
+          default: false,
         },
         (error, result) => {
           this.checkUploadResult(error, result);
@@ -84,13 +84,13 @@ class AddEvent extends React.Component {
           <GooglePlacesAutocomplete
             name="e_address"
             placeholder=""
-            onSelect={selectedResult =>
+            onSelect={(selectedResult) =>
               this.props.updateState({ e_address: selectedResult.description })
             }
             autocompletionRequest={{
               componentRestrictions: {
-                country: ["us"]
-              }
+                country: ["us"],
+              },
             }}
           />
           <h4>Event Date</h4>
@@ -108,7 +108,7 @@ class AddEvent extends React.Component {
               name="e_start_time"
               onChange={this.handleChange}
             />
-            --
+            -
             <input
               id="time"
               type="time"
@@ -136,9 +136,9 @@ class AddEvent extends React.Component {
     );
   }
 }
-const mapStateToProps = reduxState => {
+const mapStateToProps = (reduxState) => {
   return {
-    events: reduxState.events
+    events: reduxState.events,
   };
 };
 export default connect(mapStateToProps, { updateState, addEvent, getEvents })(
